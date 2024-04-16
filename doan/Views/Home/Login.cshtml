@@ -1,0 +1,83 @@
+﻿@model doan.Models.khachHang
+
+
+@{
+    ViewBag.title = "Login";
+    ViewBag.page = "Đăng nhập tài khoản";
+    ViewBag.pageName = "Đăng nhập";
+}
+<style>
+    .form-horizontal {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+</style>
+<div class="top-bar">
+    <h2>@ViewBag.page</h2>
+    <ul>
+        <li>@Html.ActionLink("Trang chủ", "Index", "Home")</li>
+        <li>/</li>
+        <li>@ViewBag.page</li>
+    </ul>
+</div>
+<div class="container p-bt">
+    <h3 class="text-center">@ViewBag.pageName</h3>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                <label>Email</label>
+                <div class="">
+                    @Html.TextBoxFor(model => model.email,  new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Mật khẩu</label>
+                <div class="">
+                    @Html.PasswordFor(model => model.matKhau,  new { @class = "form-control" } )
+                    @Html.ValidationMessageFor(model => model.matKhau, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="">
+                    <input type="submit" value="Đăng nhập" class="btn btn-danger" />
+                </div>
+            </div>
+        </div>
+    
+
+        <div class="pass-body">
+            <button type="button" class="btn-pass" data-toggle="collapse" data-target="#demo">Quên mật khẩu</button>
+            <p>Chưa có tài khoản, đăng kí @Html.ActionLink("tại đây", "Register", "Home")</p>
+            <div id="demo" class="collapse">
+                <div class="pass row ">
+                    <div class="form-group col-lg-8">
+                        <label>Email</label>
+                        @Html.TextBoxFor(x => x.email, new { @class = "form-control", @Name = "Email", type = "email" })
+                    </div>
+                    <input type="submit" class="btn btn-danger col-lg-4" value="Lấy lại mật khẩu" />
+                </div>
+            </div>
+            <p>Hoặc đăng nhập bằng</p>
+            <div class="pass-img">
+                <img src="~/Images/fb.jpg" />
+                <img src="~/Images/gg.jpg" />
+            </div>
+        </div>
+
+    }
+
+
+
+
+</div>
+
+

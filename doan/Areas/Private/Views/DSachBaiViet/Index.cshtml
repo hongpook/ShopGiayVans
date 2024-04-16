@@ -1,0 +1,105 @@
+﻿@model doan.Models.baiViet
+
+@using doan.Models;
+@{
+    List<baiViet> ds = ViewData["DSBaiViet"] as List<baiViet>;
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Private/Views/Shared/_Layout.cshtml";
+    int i = 0;
+
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Tất cả bài viết
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href='@Url.Action("Index", "TrangChu")'><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Danh mục bài viết</a></li>
+            <li class="active">Tất cả bài viết</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Tất cả bài viết</h3>
+                        <a href='@Url.Action("Create" , "DSachBaiViet")'>Đăng bài viết</a>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="example2" class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Stt</th>
+                                    <th>Mã bài viết</th>
+                                    <th>Tên bài viết</th>
+                                    <th>Ngày đăng</th>
+                                    <th>Tài khoản</th>
+                                    <th>Số lần đọc</th>
+                                    <th>Đã duyệt</th>
+                                    <th>Nhóm lệnh</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (baiViet item in ds)
+                                {
+                                    i++;
+                                    <tr>
+                                        <th>@i</th>
+                                        <td>@item.maBV</td>
+                                        <td>@item.tenBV</td>
+                                        <td>@string.Format("{0 : hh:mm [dd/MM/yyyy]} ", item.ngayDang)</td>
+                                        <td>@item.email</td>
+                                        <td>@item.soLanDoc</td>
+                                        <td>@item.daDuyet</td>
+                                        <td>
+                                            @using (Html.BeginForm("Active", "DSachBaiViet", FormMethod.Post))
+                                            {
+                                                <input type="hidden" name="maBaiViet" value="@item.maBV" />
+                                                <button title="Tắt bài viết" class="btn btn-success">@ViewBag.btnBV</button>
+                                            }
+                                            @using (Html.BeginForm("Update", "DangBaiViet", FormMethod.Post))
+                                            {
+                                                <input type="hidden" name="mabv" value="@item.maBV" />
+                                                <button title="Chỉnh sửa bài viết" type="button" class="btn btn-default" >
+                                                    <i class="fa-regular fa-pen-to-square"></i>
+                                                </button>
+                                            }
+
+
+                                            @using (Html.BeginForm("Delete", "DSachBaiViet", FormMethod.Post))
+                                            {
+                                                <input type="hidden" name="maBaiViet" value="@item.maBV" />
+                                                <button title="Xóa bài viết" class="btn btn-danger"><i class="fa-solid fa-xmark"></i></button>
+                                            }
+
+                                        </td>
+                                    </tr>
+                                }
+
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.col -->
+        </div>
+
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+
+
+
+
+

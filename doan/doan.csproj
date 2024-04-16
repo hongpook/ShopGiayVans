@@ -1,0 +1,728 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3FC0578E-543A-4467-B6D6-035B6EEC6B0C}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>doan</RootNamespace>
+    <AssemblyName>doan</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Private\Controllers\DHBiHuyController.cs" />
+    <Compile Include="Areas\Private\Controllers\DHDangGiaoController.cs" />
+    <Compile Include="Areas\Private\Controllers\DHGiaoTCController.cs" />
+    <Compile Include="Areas\Private\Controllers\DHXuLyController.cs" />
+    <Compile Include="Areas\Private\Controllers\DSachBaiVietController.cs" />
+    <Compile Include="Areas\Private\Controllers\DSachKHController.cs" />
+    <Compile Include="Areas\Private\Controllers\DSachKHMoiController.cs" />
+    <Compile Include="Areas\Private\Controllers\GhiChuController.cs" />
+    <Compile Include="Areas\Private\Controllers\LoaiHangController.cs" />
+    <Compile Include="Areas\Private\Controllers\ProfileController.cs" />
+    <Compile Include="Areas\Private\Controllers\TatCaSPController.cs" />
+    <Compile Include="Areas\Private\Controllers\TrangChuController.cs" />
+    <Compile Include="Areas\Private\Models\always.cs" />
+    <Compile Include="Areas\Private\PrivateAreaRegistration.cs" />
+    <Compile Include="Controllers\AboutUsController.cs" />
+    <Compile Include="Controllers\ArticleDetailsController.cs" />
+    <Compile Include="Controllers\CheckOutController.cs" />
+    <Compile Include="Controllers\DangNhapController.cs" />
+    <Compile Include="Controllers\ProductDetailsController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\ProductListController.cs" />
+    <Compile Include="Controllers\SaleOffController.cs" />
+    <Compile Include="Controllers\TTKhachHangController.cs" />
+    <Compile Include="Controllers\SeachController.cs" />
+    <Compile Include="Controllers\ShoesController.cs" />
+    <Compile Include="Controllers\SizeChartController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\baiViet.cs">
+      <DependentUpon>MoHinhDL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DetailsCart.cs" />
+    <Compile Include="Models\filter.cs" />
+    <Compile Include="Models\MaHoa.cs" />
+    <Compile Include="Models\mapcart.cs" />
+    <Compile Include="Models\common.cs" />
+    <Compile Include="Models\CtDonHang.cs">
+      <DependentUpon>MoHinhDL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\donHang.cs">
+      <DependentUpon>MoHinhDL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\khachHang.cs">
+      <DependentUpon>MoHinhDL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\loaiSP.cs">
+      <DependentUpon>MoHinhDL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\loaiTin.cs">
+      <DependentUpon>MoHinhDL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\mapQuanTri.cs" />
+    <Compile Include="Models\mapTaiKhoan.cs" />
+    <Compile Include="Models\MoHinhDL.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MoHinhDL.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MoHinhDL.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MoHinhDL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MoHinhDL.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MoHinhDL.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\quanTri.cs">
+      <DependentUpon>MoHinhDL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sanPham.cs">
+      <DependentUpon>MoHinhDL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>MoHinhDL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Private\Content\AdminLTE.min.css" />
+    <Content Include="Areas\Private\Content\app.css" />
+    <Content Include="Areas\Private\Content\bootstrap-datepicker.min.css" />
+    <Content Include="Areas\Private\Content\bootstrap.css" />
+    <Content Include="Areas\Private\Content\bootstrap.min.css" />
+    <Content Include="Areas\Private\Content\bootstrap3-wysihtml5.min.css" />
+    <Content Include="Areas\Private\Content\dataTables.bootstrap.min.css" />
+    <Content Include="Areas\Private\Content\daterangepicker.css" />
+    <Content Include="Areas\Private\Content\font-awesome.min.css" />
+    <Content Include="Areas\Private\Content\fullcalendar.min.css" />
+    <Content Include="Areas\Private\Content\fullcalendar.print.min.css" />
+    <Content Include="Areas\Private\Content\ionicons.min.css" />
+    <Content Include="Areas\Private\Content\jquery-jvectormap.css" />
+    <Content Include="Areas\Private\Content\morris.css" />
+    <Content Include="Areas\Private\Content\Style.css" />
+    <Content Include="Areas\Private\Content\summernote-lite.css" />
+    <Content Include="Areas\Private\Content\_all-skins.min.css" />
+    <Content Include="Areas\Private\Script\adminlte.min.js" />
+    <Content Include="Areas\Private\Script\bootstrap-datepicker.min.js" />
+    <Content Include="Areas\Private\Script\bootstrap.min.js" />
+    <Content Include="Areas\Private\Script\bootstrap3-wysihtml5.all.min.js" />
+    <Content Include="Areas\Private\Script\dashboard.js" />
+    <Content Include="Areas\Private\Script\dataTables.bootstrap.min.js" />
+    <Content Include="Areas\Private\Script\daterangepicker.js" />
+    <Content Include="Areas\Private\Script\demo.js" />
+    <Content Include="Areas\Private\Script\fastclick.js" />
+    <Content Include="Areas\Private\Script\fullcalendar.min.js" />
+    <Content Include="Areas\Private\Script\jquery-jvectormap-1.2.2.min.js" />
+    <Content Include="Areas\Private\Script\jquery-jvectormap-world-mill-en.js" />
+    <Content Include="Areas\Private\Script\jquery-ui.min.js" />
+    <Content Include="Areas\Private\Script\jquery.dataTables.min.js" />
+    <Content Include="Areas\Private\Script\jquery.knob.min.js" />
+    <Content Include="Areas\Private\Script\jquery.min.js" />
+    <Content Include="Areas\Private\Script\jquery.min_2_1_3.js" />
+    <Content Include="Areas\Private\Script\jquery.slimscroll.min.js" />
+    <Content Include="Areas\Private\Script\jquery.sparkline.min.js" />
+    <Content Include="Areas\Private\Script\moment.min.js" />
+    <Content Include="Areas\Private\Script\morris.min.js" />
+    <Content Include="Areas\Private\Script\raphael.min.js" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\checkOut.css" />
+    <Content Include="Content\DangNhap.css" />
+    <Content Include="Content\login.css" />
+    <Content Include="Content\productDetail.css" />
+    <Content Include="Content\shoes.css" />
+    <Content Include="Content\size.css" />
+    <Content Include="Content\style.css" />
+    <Content Include="Images\Ao1\h1.jpg" />
+    <Content Include="Images\Ao1\h2.jpg" />
+    <Content Include="Images\Ao1\h3.jpg" />
+    <Content Include="Images\Ao2\h1.jpg" />
+    <Content Include="Images\Ao2\h2.jpg" />
+    <Content Include="Images\Ao2\h3.jpg" />
+    <Content Include="Images\Ao3\h1.jpg" />
+    <Content Include="Images\Ao3\h2.jpg" />
+    <Content Include="Images\Ao3\h3.jpg" />
+    <Content Include="Images\Ao4\h1.jpg" />
+    <Content Include="Images\Ao4\h2.jpg" />
+    <Content Include="Images\Ao4\h3.jpg" />
+    <Content Include="Images\Ao5\h1.jpg" />
+    <Content Include="Images\Ao5\h2.jpg" />
+    <Content Include="Images\Ao5\h3.jpg" />
+    <Content Include="Images\Balo10\h1.jpg" />
+    <Content Include="Images\Balo10\h2.jpg" />
+    <Content Include="Images\Balo10\h3.jpg" />
+    <Content Include="Images\Balo11\h1.jpg" />
+    <Content Include="Images\Balo11\h2.jpg" />
+    <Content Include="Images\Balo11\h3.jpg" />
+    <Content Include="Images\Balo1\hinh1.jpg" />
+    <Content Include="Images\Balo1\hinh2.jpg" />
+    <Content Include="Images\Balo1\hinh3.jpg" />
+    <Content Include="Images\Balo2\hinh1.jpg" />
+    <Content Include="Images\Balo2\hinh2.jpg" />
+    <Content Include="Images\Balo2\hinh3.jpg" />
+    <Content Include="Images\Balo3\hinh1.jpg" />
+    <Content Include="Images\Balo3\hinh2.jpg" />
+    <Content Include="Images\Balo3\hinh3.jpg" />
+    <Content Include="Images\Balo4\hinh1.jpg" />
+    <Content Include="Images\Balo4\hinh2.jpg" />
+    <Content Include="Images\Balo4\hinh3.jpg" />
+    <Content Include="Images\Balo5\hinh1.jpg" />
+    <Content Include="Images\Balo5\hinh2.jpg" />
+    <Content Include="Images\Balo5\hinh3.jpg" />
+    <Content Include="Images\Balo6\hinh1.jpg" />
+    <Content Include="Images\Balo6\hinh2.jpg" />
+    <Content Include="Images\Balo6\hinh3.jpg" />
+    <Content Include="Images\Balo7\hinh1.jpg" />
+    <Content Include="Images\Balo7\hinh2.jpg" />
+    <Content Include="Images\Balo7\hinh3.jpg" />
+    <Content Include="Images\Balo8\h1.jpg" />
+    <Content Include="Images\Balo8\h2.jpg" />
+    <Content Include="Images\Balo8\h3.jpg" />
+    <Content Include="Images\Balo9\h1.jpg" />
+    <Content Include="Images\Balo9\h2.jpg" />
+    <Content Include="Images\Balo9\h3.jpg" />
+    <Content Include="Images\bg_hotline.jpg" />
+    <Content Include="Images\bg_product.jpg" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Images\diuTrann.jpg" />
+    <Content Include="Images\fb.jpg" />
+    <Content Include="Images\gg.jpg" />
+    <Content Include="Images\logo-vans.jpg" />
+    <Content Include="Images\message.png" />
+    <Content Include="Images\Mu1\h1.jpg" />
+    <Content Include="Images\Mu1\h2.jpg" />
+    <Content Include="Images\Mu1\h3.jpg" />
+    <Content Include="Images\Mu2\h1.jpg" />
+    <Content Include="Images\Mu2\h2.jpg" />
+    <Content Include="Images\Mu2\h3.jpg" />
+    <Content Include="Images\Mu3\h1.jpg" />
+    <Content Include="Images\Mu3\h2.jpg" />
+    <Content Include="Images\Mu3\h3.jpg" />
+    <Content Include="Images\Mu4\h1.jpg" />
+    <Content Include="Images\Mu4\h2.jpg" />
+    <Content Include="Images\Mu4\h3.jpg" />
+    <Content Include="Images\Mu5\h1.jpg" />
+    <Content Include="Images\Mu5\h2.jpg" />
+    <Content Include="Images\Mu5\h3.jpg" />
+    <Content Include="Images\New10\h1.jpg" />
+    <Content Include="Images\New10\h2.jpg" />
+    <Content Include="Images\New11\h1.jpg" />
+    <Content Include="Images\New11\h2.jpg" />
+    <Content Include="Images\New12\h1.jpg" />
+    <Content Include="Images\New12\h2.jpg" />
+    <Content Include="Images\New13\h1.jpg" />
+    <Content Include="Images\New13\h2.jpg" />
+    <Content Include="Images\New14\h1.jpg" />
+    <Content Include="Images\New14\h2.jpg" />
+    <Content Include="Images\New15\h1.jpg" />
+    <Content Include="Images\New15\h2.jpg" />
+    <Content Include="Images\New16\h1.jpg" />
+    <Content Include="Images\New16\h2.jpg" />
+    <Content Include="Images\New1\h1.jpg" />
+    <Content Include="Images\New1\h2.jpg" />
+    <Content Include="Images\New2\h1.jpg" />
+    <Content Include="Images\New2\h2.jpg" />
+    <Content Include="Images\New3\h1.jpg" />
+    <Content Include="Images\New3\h2.jpg" />
+    <Content Include="Images\New4\h1.jpg" />
+    <Content Include="Images\New4\h2.jpg" />
+    <Content Include="Images\New5\h1.jpg" />
+    <Content Include="Images\New5\h2.jpg" />
+    <Content Include="Images\New6\h1.jpg" />
+    <Content Include="Images\New6\h2.jpg" />
+    <Content Include="Images\New7\h1.jpg" />
+    <Content Include="Images\New7\h2.jpg" />
+    <Content Include="Images\New8\h1.jpg" />
+    <Content Include="Images\New8\h2.jpg" />
+    <Content Include="Images\New9\h1.jpg" />
+    <Content Include="Images\New9\h2.jpg" />
+    <Content Include="Images\Quan1\h1.jpg" />
+    <Content Include="Images\Quan1\h2.jpg" />
+    <Content Include="Images\Quan1\h3.jpg" />
+    <Content Include="Images\Quan2\h1.jpg" />
+    <Content Include="Images\Quan2\h2.jpg" />
+    <Content Include="Images\Quan2\h3.jpg" />
+    <Content Include="Images\ssdd.jpg" />
+    <Content Include="Images\Tui1\h1.jpg" />
+    <Content Include="Images\Tui1\h2.jpg" />
+    <Content Include="Images\Tui1\h3.jpg" />
+    <Content Include="Images\Tui2\h1.jpg" />
+    <Content Include="Images\Tui2\h2.jpg" />
+    <Content Include="Images\Tui2\h3.jpg" />
+    <Content Include="Images\Tui3\h1.jpg" />
+    <Content Include="Images\Tui3\h2.jpg" />
+    <Content Include="Images\Tui3\h3.jpg" />
+    <Content Include="Images\Tui\h1.jpg" />
+    <Content Include="Images\Tui\h2.jpg" />
+    <Content Include="Images\Tui\h3.jpg" />
+    <Content Include="Images\Vans10\hinh1.jpg" />
+    <Content Include="Images\Vans10\hinh2.jpg" />
+    <Content Include="Images\Vans10\hinh3.jpg" />
+    <Content Include="Images\Vans11\h1.jpg" />
+    <Content Include="Images\Vans11\h2.jpg" />
+    <Content Include="Images\Vans11\h3.jpg" />
+    <Content Include="Images\Vans12\h1.jpg" />
+    <Content Include="Images\Vans12\h2.jpg" />
+    <Content Include="Images\Vans12\h3.jpg" />
+    <Content Include="Images\Vans13\h1.jpg" />
+    <Content Include="Images\Vans13\h2.jpg" />
+    <Content Include="Images\Vans13\h3.jpg" />
+    <Content Include="Images\Vans14\h1.jpg" />
+    <Content Include="Images\Vans14\h2.jpg" />
+    <Content Include="Images\Vans14\h3.jpg" />
+    <Content Include="Images\Vans15\h1.jpg" />
+    <Content Include="Images\Vans15\h2.jpg" />
+    <Content Include="Images\Vans15\h3.jpg" />
+    <Content Include="Images\Vans16\h1.jpg" />
+    <Content Include="Images\Vans16\h2.jpg" />
+    <Content Include="Images\Vans16\h3.jpg" />
+    <Content Include="Images\Vans17\h1.jpg" />
+    <Content Include="Images\Vans17\h2.jpg" />
+    <Content Include="Images\Vans17\h3.jpg" />
+    <Content Include="Images\Vans18\h1.jpg" />
+    <Content Include="Images\Vans18\h2.jpg" />
+    <Content Include="Images\Vans18\h3.jpg" />
+    <Content Include="Images\Vans19\h1.jpg" />
+    <Content Include="Images\Vans19\h2.jpg" />
+    <Content Include="Images\Vans19\h3.jpg" />
+    <Content Include="Images\Vans1\hinh1.jpg" />
+    <Content Include="Images\Vans1\hinh2.jpg" />
+    <Content Include="Images\Vans1\hinh3.jpg" />
+    <Content Include="Images\Vans20\h1.jpg" />
+    <Content Include="Images\Vans20\h2.jpg" />
+    <Content Include="Images\Vans20\h3.jpg" />
+    <Content Include="Images\Vans21\h1.jpg" />
+    <Content Include="Images\Vans21\h2.jpg" />
+    <Content Include="Images\Vans21\h3.jpg" />
+    <Content Include="Images\Vans22\h1.jpg" />
+    <Content Include="Images\Vans22\h2.jpg" />
+    <Content Include="Images\Vans22\h3.jpg" />
+    <Content Include="Images\Vans23\h1.jpg" />
+    <Content Include="Images\Vans23\h2.jpg" />
+    <Content Include="Images\Vans23\h3.jpg" />
+    <Content Include="Images\Vans24\h1.jpg" />
+    <Content Include="Images\Vans24\h2.jpg" />
+    <Content Include="Images\Vans24\h3.jpg" />
+    <Content Include="Images\Vans25\h1.jpg" />
+    <Content Include="Images\Vans25\h2.jpg" />
+    <Content Include="Images\Vans25\h3.jpg" />
+    <Content Include="Images\Vans26\h1.jpg" />
+    <Content Include="Images\Vans26\h2.jpg" />
+    <Content Include="Images\Vans26\h3.jpg" />
+    <Content Include="Images\Vans27\h1.jpg" />
+    <Content Include="Images\Vans27\h2.jpg" />
+    <Content Include="Images\Vans27\h3.jpg" />
+    <Content Include="Images\Vans28\h1.jpg" />
+    <Content Include="Images\Vans28\h2.jpg" />
+    <Content Include="Images\Vans28\h3.jpg" />
+    <Content Include="Images\Vans29\h1.jpg" />
+    <Content Include="Images\Vans29\h2.jpg" />
+    <Content Include="Images\Vans29\h3.jpg" />
+    <Content Include="Images\Vans2\hinh1.jpg" />
+    <Content Include="Images\Vans2\hinh2.jpg" />
+    <Content Include="Images\Vans2\hinh3.jpg" />
+    <Content Include="Images\Vans30\h1.jpg" />
+    <Content Include="Images\Vans30\h2.jpg" />
+    <Content Include="Images\Vans30\h3.jpg" />
+    <Content Include="Images\Vans31\h1.jpg" />
+    <Content Include="Images\Vans31\h2.jpg" />
+    <Content Include="Images\Vans31\h3.jpg" />
+    <Content Include="Images\Vans32\h1.jpg" />
+    <Content Include="Images\Vans32\h2.jpg" />
+    <Content Include="Images\Vans32\h3.jpg" />
+    <Content Include="Images\Vans33\h1.jpg" />
+    <Content Include="Images\Vans33\h2.jpg" />
+    <Content Include="Images\Vans33\h3.jpg" />
+    <Content Include="Images\Vans34\h1.jpg" />
+    <Content Include="Images\Vans34\h2.jpg" />
+    <Content Include="Images\Vans34\h3.jpg" />
+    <Content Include="Images\Vans35\h1.jpg" />
+    <Content Include="Images\Vans35\h2.jpg" />
+    <Content Include="Images\Vans35\h3.jpg" />
+    <Content Include="Images\Vans36\h1.jpg" />
+    <Content Include="Images\Vans36\h2.jpg" />
+    <Content Include="Images\Vans36\h3.jpg" />
+    <Content Include="Images\Vans37\h1.jpg" />
+    <Content Include="Images\Vans37\h2.jpg" />
+    <Content Include="Images\Vans37\h3.jpg" />
+    <Content Include="Images\Vans38\h1.jpg" />
+    <Content Include="Images\Vans38\h2.jpg" />
+    <Content Include="Images\Vans38\h3.jpg" />
+    <Content Include="Images\Vans39\h1.jpg" />
+    <Content Include="Images\Vans39\h2.jpg" />
+    <Content Include="Images\Vans39\h3.jpg" />
+    <Content Include="Images\Vans3\hinh1.jpg" />
+    <Content Include="Images\Vans3\hinh2.jpg" />
+    <Content Include="Images\Vans3\hinh3.jpg" />
+    <Content Include="Images\Vans40\h1.jpg" />
+    <Content Include="Images\Vans40\h2.jpg" />
+    <Content Include="Images\Vans40\h3.jpg" />
+    <Content Include="Images\Vans4\hinh1.jpg" />
+    <Content Include="Images\Vans4\hinh2.jpg" />
+    <Content Include="Images\Vans4\hinh3.jpg" />
+    <Content Include="Images\Vans5\hinh1.jpg" />
+    <Content Include="Images\Vans5\hinh2.jpg" />
+    <Content Include="Images\Vans5\hinh3.jpg" />
+    <Content Include="Images\Vans6\hinh1.jpg" />
+    <Content Include="Images\Vans6\hinh2.jpg" />
+    <Content Include="Images\Vans6\hinh3.jpg" />
+    <Content Include="Images\Vans7\hinh1.jpg" />
+    <Content Include="Images\Vans7\hinh2.jpg" />
+    <Content Include="Images\Vans7\hinh3.jpg" />
+    <Content Include="Images\Vans8\hinh1.jpg" />
+    <Content Include="Images\Vans8\hinh2.jpg" />
+    <Content Include="Images\Vans8\hinh3.jpg" />
+    <Content Include="Images\Vans9\hinh1.jpg" />
+    <Content Include="Images\Vans9\hinh2.jpg" />
+    <Content Include="Images\Vans9\hinh3.jpg" />
+    <Content Include="Images\Vi1\h1.jpg" />
+    <Content Include="Images\Vi1\h2.jpg" />
+    <Content Include="Images\Vi2\h1.jpg" />
+    <Content Include="Images\Vi2\h2.jpg" />
+    <Content Include="Images\Vi3\h1.jpg" />
+    <Content Include="Images\Vi3\h2.jpg" />
+    <Content Include="Models\MoHinhDL.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MoHinhDL.edmx</DependentUpon>
+      <LastGenOutput>MoHinhDL.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\MoHinhDL.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MoHinhDL.edmx</DependentUpon>
+      <LastGenOutput>MoHinhDL.cs</LastGenOutput>
+    </Content>
+    <Content Include="Areas\Private\Views\TatCaSP\Edit.cshtml" />
+    <Content Include="Areas\Private\Views\DHGiaoTC\Index.cshtml" />
+    <Content Include="Areas\Private\Views\DHBiHuy\Index.cshtml" />
+    <None Include="Scripts\Api.json" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Images\back_ground.jpg" />
+    <Content Include="Images\bg_module_2.jpg" />
+    <Content Include="Images\bg_module_3.jpg" />
+    <Content Include="Images\logo-ft.jpg" />
+    <Content Include="Images\News\news-1.jpg" />
+    <Content Include="Images\News\news-2.jpg" />
+    <Content Include="Images\News\news-3.jpg" />
+    <Content Include="Images\slider_2.jpg" />
+    <Content Include="Images\slider_3.jpg" />
+    <Content Include="Images\slider_4.jpg" />
+    <Content Include="Images\slider_5.jpg" />
+    <Content Include="Images\top-bar.jpg" />
+    <Content Include="Images\vans-authentic-classic-4.jpg" />
+    <Content Include="Images\vans-authentic-classic-black.jpg" />
+    <Content Include="Images\vans-authentic-classic-black-1.jpg" />
+    <Content Include="Images\vans-authentic-classic-black-2.jpg" />
+    <Content Include="Images\vans-authentic-classic-black-3.jpg" />
+    <Content Include="Images\vans-authentic-classic-black-4.jpg" />
+    <Content Include="Images\vans-authentic-classic-black-5.jpg" />
+    <Content Include="Images\vans-classic.jpg" />
+    <Content Include="Images\vans-old-skool-black-white\vans-old-skool-black-white-1.jpg" />
+    <Content Include="Images\vans-old-skool-black-white\vans-old-skool-black-white-2.jpg" />
+    <Content Include="Images\vans-old-skool-black-white\vans-old-skool-black-white-3.jpg" />
+    <Content Include="Images\vans-old-skool-black-white\vans-old-skool-black-white-4.jpg" />
+    <Content Include="Images\vans-old-skool-black-white\vans-old-skool-black-white-5.jpg" />
+    <Content Include="Images\vans-old-skool-classic-black-black\vans-old-skool-classic-black-black-1.jpg" />
+    <Content Include="Images\vans-old-skool-classic-black-black\vans-old-skool-classic-black-black-2.jpg" />
+    <Content Include="Images\vans-old-skool-classic-black-black\vans-old-skool-classic-black-black-3.jpg" />
+    <Content Include="Images\vans-old-skool-classic-black-black\vans-old-skool-classic-black-black-4.jpg" />
+    <Content Include="Images\vans-old-skool-classic-black-black\vans-old-skool-classic-black-black-5.jpg" />
+    <Content Include="Images\vans-old-skool-classic-navy-white\vans-old-skool-classic-navy-white-1.jpg" />
+    <Content Include="Images\vans-old-skool-classic-navy-white\vans-old-skool-classic-navy-white-2.jpg" />
+    <Content Include="Images\vans-old-skool-classic-navy-white\vans-old-skool-classic-navy-white-3.jpg" />
+    <Content Include="Images\vans-old-skool-classic-navy-white\vans-old-skool-classic-navy-white-4.jpg" />
+    <Content Include="Images\vans-old-skool-classic-navy-white\vans-old-skool-classic-navy-white-5.jpg" />
+    <Content Include="Images\vans-old-skool-classic-true-white\vans-old-skool-classic-true-white-1.jpg" />
+    <Content Include="Images\vans-old-skool-classic-true-white\vans-old-skool-classic-true-white-2.jpg" />
+    <Content Include="Images\vans-old-skool-classic-true-white\vans-old-skool-classic-true-white-3.jpg" />
+    <Content Include="Images\vans-old-skool-classic-true-white\vans-old-skool-classic-true-white-4.jpg" />
+    <Content Include="Images\vans-old-skool-classic-true-white\vans-old-skool-classic-true-white-5.jpg" />
+    <Content Include="Images\vans-sk8-hi-classic-black-white\vans-sk8-hi-classic-black-white-1.jpg" />
+    <Content Include="Images\vans-sk8-hi-classic-black-white\vans-sk8-hi-classic-black-white-2.jpg" />
+    <Content Include="Images\vans-sk8-hi-classic-black-white\vans-sk8-hi-classic-black-white-3.jpg" />
+    <Content Include="Images\vans-sk8-hi-classic-black-white\vans-sk8-hi-classic-black-white-4.jpg" />
+    <Content Include="Images\vans-sk8-hi-classic-black-white\vans-sk8-hi-classic-black-white-5.jpg" />
+    <Content Include="Images\vans-slip-on-checkerboard-black-off-white\vans-slip-on-checkerboard-black-off-white-1.jpg" />
+    <Content Include="Images\vans-slip-on-checkerboard-black-off-white\vans-slip-on-checkerboard-black-off-white-2.jpg" />
+    <Content Include="Images\vans-slip-on-checkerboard-black-off-white\vans-slip-on-checkerboard-black-off-white-3.jpg" />
+    <Content Include="Images\vans-slip-on-checkerboard-black-off-white\vans-slip-on-checkerboard-black-off-white-4.jpg" />
+    <Content Include="Images\vans-slip-on-checkerboard-black-off-white\vans-slip-on-checkerboard-black-off-white-5.jpg" />
+    <Content Include="Images\van_news\van_new_1.jpg" />
+    <Content Include="Images\van_news\van_new_2.jpg" />
+    <Content Include="Images\van_news\van_new_3.jpg" />
+    <Content Include="Images\van_news\van_new_4.jpg" />
+    <Content Include="Images\van_news\van_new_5.jpg" />
+    <Content Include="Images\van_news\van_new_6.jpg" />
+    <Content Include="Images\van_news\van_new_7.jpg" />
+    <Content Include="Images\van_news\van_new_8.jpg" />
+    <Content Include="Images\slider_1.jpg" />
+    <Content Include="Images\describe-giay.jpg" />
+    <Content Include="Images\bang-size-vans.jpg" />
+    <Content Include="Areas\Private\Views\web.config" />
+    <Content Include="Areas\Private\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Private\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Private\Views\TrangChu\Index.cshtml" />
+    <Content Include="Areas\Private\Views\Profile\Index.cshtml" />
+    <Content Include="Areas\Private\Views\GhiChu\Index.cshtml" />
+    <Content Include="Areas\Private\Views\DSachKH\Index.cshtml" />
+    <Content Include="Areas\Private\Views\TatCaSP\Index.cshtml" />
+    <Content Include="Areas\Private\Views\DSachBaiViet\Index.cshtml" />
+    <EntityDeploy Include="Models\MoHinhDL.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MoHinhDL.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\MoHinhDL.edmx.diagram">
+      <DependentUpon>MoHinhDL.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\Private\Views\DHXuLy\Index.cshtml" />
+    <Content Include="Areas\Private\Views\DSachBaiViet\Create.cshtml" />
+    <Content Include="Areas\Private\Views\LoaiHang\Index.cshtml" />
+    <Content Include="Areas\Private\Views\TatCaSP\Create.cshtml" />
+    <Content Include="Areas\Private\Views\DSachKHMoi\Index.cshtml" />
+    <Content Include="Areas\Private\Views\DHDangGiao\Index.cshtml" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\DangNhap.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\render.js" />
+    <Content Include="Scripts\slide.js" />
+    <Content Include="Scripts\tab.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shoes\Index.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Seach\Index.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\SizeChart\Index.cshtml" />
+    <Content Include="Views\DangNhap\Index.cshtml" />
+    <Content Include="Views\ProductDetails\Index.cshtml" />
+    <Content Include="Views\ArticleDetails\Index.cshtml" />
+    <Content Include="Views\ProductList\Index.cshtml" />
+    <Content Include="Views\Shoes\Backpack.cshtml" />
+    <Content Include="Views\Shoes\Clothes.cshtml" />
+    <Content Include="Views\Shoes\AllVans.cshtml" />
+    <Content Include="Views\Home\Register.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\CheckOut\Index.cshtml" />
+    <Content Include="Scripts\Data.js" />
+    <Content Include="Views\TTKhachHang\Index.cshtml" />
+    <Content Include="Views\AboutUs\Index.cshtml" />
+    <Content Include="Views\SaleOff\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Private\Data\" />
+    <Folder Include="Areas\Private\Views\Home\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>51785</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:51785/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

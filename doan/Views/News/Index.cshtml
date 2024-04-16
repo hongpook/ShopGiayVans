@@ -1,0 +1,49 @@
+﻿@using doan.Models
+@{ 
+    ViewBag.title = "News";
+    ViewBag.page = "TIN TỨC VANS MỚI NHẤT CẬP NHẬT MỖI NGÀY";
+}
+
+<div class="top-bar">
+    <h2>@ViewBag.page</h2>
+    <ul>
+        <li>@Html.ActionLink("Trang chủ", "Index", "Home")</li>
+        <li>/</li>
+        <li>@ViewBag.page</li>
+    </ul>
+</div>
+<div class="container p-bt">
+    <div class="van-new-wrapper row">
+        @foreach (baiViet b in common.getBaiViet())
+        {
+            <div class="van-new-content col-lg-4">
+                <div class="van-new-blog-body">
+                    <div class="van-new-body">
+                        <a href='@Url.Action("Index" , "ArticleDetails" , new {maBV = b.maBV})'><img src="@b.hinhDD" alt=""></a>
+                        <div class="date-new">
+                            <i><i class="fa-regular fa-calendar"></i></i>
+                            <b>@b.ngayDang</b>
+                            <p>Đăng bởi</p>
+                            <b>@b.email</b>
+                        </div>
+                    </div>
+                    <div class="van-new-blog">
+                        <a href='@Url.Action("Index" , "ArticleDetails" , new {maBV = b.maBV})'>@b.tenBV</a>
+                        <p>@b.ndTomTat</p>
+                    </div>
+                </div>
+            </div>
+        }
+        
+    </div>
+</div>
+<div class="page">
+    <ul>
+        <li>1</li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">...</a></li>
+        <li><a href="#">8</a></li>
+        <li><a href="#">></a></li>
+    </ul>
+</div>

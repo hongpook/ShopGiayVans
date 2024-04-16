@@ -1,0 +1,472 @@
+﻿@using doan.Models
+@model doan.Models.khachHang
+
+@{
+    Layout = null;
+    mapcart sp = (mapcart)ViewData["Cart"];
+
+    var hoTen = HttpContext.Current.Session["user"].ToString();
+    var email = HttpContext.Current.Session["Email"].ToString();
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/87794f3760.js" crossorigin="anonymous"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./style.css">
+    <link href="~/Content/checkOut.css" rel="stylesheet" />
+</head>
+
+<body>
+    @using (Html.BeginForm("SaveDB", "CheckOut" , FormMethod.Post))
+    {
+        <div class="container-fluid">
+            <div class="wrap">
+                <main class="main">
+                    <header class="main__header">
+                        <div class="logo logo--left">
+
+                            <h1 class="shop__name">
+                                <a href="/">VANS Việt Nam</a>
+                            </h1>
+
+                        </div>
+                    </header>
+                    <div class="main__content">
+                        <article class="animate-floating-labels row">
+                            <div class="col col--two">
+                                <section class="section">
+                                    <div class="section__header">
+                                        <div class="layout-flex">
+                                            <h2 class="section__title layout-flex__item layout-flex__item--stretch">
+                                                <i class="fa fa-id-card-o fa-lg section__title--icon hide-on-desktop"></i>
+
+                                                Thông tin nhận hàng
+
+                                            </h2>
+                                            <a href='@Url.Action("Login","Home")'>
+                                                <i class="fa fa-user-circle-o fa-lg"></i>
+                                                <span>Đăng nhập </span>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="section__content">
+                                        <div class="fieldset">
+                                            <div class="field">
+                                                <label>Email</label>
+                                                <div class="field__input-wrapper">
+                                                    @Html.TextBoxFor(x => x.email, new { @class = "form-control"})
+                                                </div>
+                                            </div>
+                                            <div class="field">
+                                                <label>Họ tên</label>
+                                                <div class="field__input-wrapper">
+                                                    @Html.TextBoxFor(x => x.tenKH, new { @class = "form-control"})
+
+                                                </div>
+                                            </div>
+
+                                            <div class="field ">
+                                                <label>Số điện thoại</label>
+                                                <div class="field__input-wrapper field__input-wrapper--connected">
+                                                    @Html.TextBoxFor(x => x.soDT, new { @class = "form-control" })
+
+                                                </div>
+                                            </div>
+
+                                            <div class="field">
+                                                <label>Địa chỉ</label>
+                                                <div class="field__input-wrapper">
+                                                    @Html.TextBoxFor(x => x.diaChi, new { @class = "form-control", @placehoder = "Địa chỉ" })
+
+                                                </div>
+
+                                            </div>
+                                            <div class="field">
+                                                <label>Ghi Chú</label>
+                                                <div class="field__input-wrapper">
+                                                    @Html.TextAreaFor(x => x.ghiChu, new { @class = "form-control", @placehoder = "Địa chỉ" })
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
+                            </div>
+                            <div class="col-lg-6">
+                                <section class="section" data-define="{shippingMethod: ''}">
+                                    <div class="section__header">
+                                        <div class="layout-flex">
+                                            <h2 class="section__title layout-flex__item layout-flex__item--stretch">
+                                                <i class="fa fa-truck fa-lg section__title--icon hide-on-desktop"></i>
+                                                Vận chuyển
+                                            </h2>
+                                        </div>
+                                    </div>
+                                    <div class="section__content" data-tg-refresh="refreshShipping" id="shippingMethodList"
+                                         data-define="{isAddressSelecting: true, shippingMethods: []}">
+                                        <div class="alert alert--loader spinner spinner--active hide"
+                                             data-bind-show="isLoadingShippingMethod">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="spinner-loader">
+                                                <use href="#spinner"></use>
+                                            </svg>
+                                        </div>
+
+
+                                        <div class="alert alert-retry alert--danger hide"
+                                             data-bind-event-click="handleShippingMethodErrorRetry()"
+                                             data-bind-show="!isLoadingShippingMethod &amp;&amp; !isAddressSelecting &amp;&amp; isLoadingShippingError">
+                                            <span data-bind="loadingShippingErrorMessage">
+                                                Không thể load phí vận chuyển. Vui
+                                                lòng thử lại
+                                            </span> <i class="fa fa-refresh"></i>
+                                        </div>
+
+
+                                        <div class="content-box hide"
+                                             data-bind-show="!isLoadingShippingMethod &amp;&amp; !isAddressSelecting &amp;&amp; !isLoadingShippingError">
+
+
+                                        </div>
+
+                                        <div class="alert alert--info"
+                                             data-bind-show="!isLoadingShippingMethod &amp;&amp; isAddressSelecting">
+                                            Vui lòng nhập thông tin giao hàng
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <section class="section">
+                                    <div class="section__header">
+                                        <div class="layout-flex">
+                                            <h2 class="section__title layout-flex__item layout-flex__item--stretch">
+                                                <i class="fa fa-credit-card fa-lg section__title--icon hide-on-desktop"></i>
+                                                Thanh toán
+                                            </h2>
+                                        </div>
+                                    </div>
+                                    <div class="section__content">
+
+                                        <div class="content-box" data-define="{paymentMethod: undefined}">
+
+
+                                            <div class="content-box__row">
+                                                <div class="radio-wrapper">
+                                                    <div class="radio__input">
+                                                        <input name="paymentMethod" id="paymentMethod-302037" type="radio"
+                                                               class="input-radio" data-bind="paymentMethod" value="302037">
+                                                    </div>
+                                                    <label for="paymentMethod-302037" class="radio__label">
+                                                        <span class="radio__label__primary">
+                                                            Thanh toán khi giao hàng (COD)
+                                                            [Được kiểm tra hàng tại chỗ, không được thử hàng]
+                                                        </span>
+                                                        <span class="radio__label__accessory">
+                                                            <span class="radio__label__icon">
+                                                                <i class="fa-solid fa-money-bill"></i>
+                                                            </span>
+                                                        </span>
+                                                    </label>
+                                                </div>
+
+                                                <div class="content-box__row__desc hide"
+                                                     data-bind-show="paymentMethod == 302037">
+                                                    <p>
+                                                        Sau khi nhận được đơn hàng chúng tôi sẽ gọi xác nhận trong khung giờ
+                                                        từ 9h-11h và 14h-16h mỗi ngày qua số tổng đài 0866 956 907, mong quý
+                                                        khách giữ liên lạc trong khung giờ này.
+                                                    </p>
+                                                    <p>
+                                                        Hàng hóa sẽ bao gồm: sản phẩm quý khách đã đặt + 1 phiếu bảo hành 1
+                                                        tháng (chỉ áp dụng cho giày dép) + 1 túi vải logo VANS
+                                                    </p>
+                                                    <p>
+                                                        Theo kinh nghiệm của chúng tôi, hàng gửi ngoài TP.HCM sẽ tới nơi từ 3
+                                                        -&gt; 5 ngày, nội thành HCM từ 1 -&gt; 2 ngày, dịch vụ:
+                                                        giaohangtietkiem.vn (dịch vụ mà chúng tôi sử dụng để gửi hàng)
+                                                    </p>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </article>
+                        <div class="field__input-btn-wrapper field__input-btn-wrapper--vertical hide-on-desktop">
+                            <button type="submit" class="btn btn-checkout spinner"
+                                    data-bind-class="{'spinner--active': isSubmitingCheckout}"
+                                    data-bind-disabled="isSubmitingCheckout || isLoadingReductionCode">
+                                <span class="spinner-label">ĐẶT HÀNG</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="spinner-loader">
+                                    <use href="#spinner"></use>
+                                </svg>
+                            </button>
+
+                            <a href="/cart" class="previous-link">
+                                <i class="previous-link__arrow">❮</i>
+                                <span class="previous-link__content">Quay về giỏ hàng</span>
+                            </a>
+
+                        </div>
+
+                        <div id="common-alert" data-tg-refresh="refreshError">
+
+
+                            <div class="alert alert--danger hide-on-desktop hide"
+                                 data-bind-show="!isSubmitingCheckout &amp;&amp; isSubmitingCheckoutError"
+                                 data-bind="submitingCheckoutErrorMessage">Có lỗi xảy ra khi xử lý. Vui lòng thử lại</div>
+                        </div>
+                    </div>
+
+                    <div class="main__footer unprintable">
+                        <ul class="main__policy">
+                            <li>
+
+                                <a data-toggle="#refund_term" data-toggle-class="hide">Chính sách hoàn trả</a>
+
+                            </li>
+                            <li>
+
+                                <a data-toggle="#privacy_term" data-toggle-class="hide">Chính sách bảo mật</a>
+
+                            </li>
+                            <li>
+
+                            </li>
+                        </ul>
+                        <p></p>
+                        <div class="modal-wrapper hide" id="refund_term">
+                            <div class="modal" style="display: inline-block;">
+                                <div class="modal-header">
+                                    <h2 class="modal-title">Chính sách hoàn trả</h2>
+                                    <span class="close" data-toggle="#refund_term" data-toggle-class="hide">×</span>
+                                </div>
+                                <div class="modal-body">
+                                    <pre class="term-preview">Điều kiện đổi hàng:
+Trong vòng 7 ngày kể từ ngày mua, quý khách được phép đổi size, không đổi mẫu khác và chỉ được đổi 1 lần duy nhất nếu phát hiện sản phẩm bị lỗi với điều kiện sau khi được Cty xác nhận thì sản phẩm được đổi lại. Khi đến đổi, quý khách vui vòng mang theo sản phẩm và phải trong tình trạng còn nguyên vẹn (thẻ bảo hành, hộp giày, giấy gói...). Ngoài ra những sản phẩm đã qua sử dụng thì sẽ không được đổi.
+
+
+
+Điều kiện bảo hành:
+Quý khách đang trong quá trình sử dụng và phát hiện sản phẩm có những vấn đề về chất liệu hoặc những lỗi do nhà sản xuất. Thời gian bảo hành trong vòng 1 tháng kể từ ngày mua (chỉ bảo hành những lỗi như: bung keo, sứt chỉ). Trong trường hợp không có thẻ hoặc mất thẻ bảo hành, Cty sẽ xem như sản phẩm đã quá hạn bảo hành.
+
+
+
+Lưu ý:
+Nếu quý khách tự ý thay đổi, sửa chữa sản phẩm hoặc không tuân theo phương pháp bảo quản, dẫn đến sản phẩm bị hư hại, Cty chúng tôi sẽ hoàn toàn không chịu trách nhiệm về việc bảo hành lỗi sản phẩm trên</pre>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-wrapper hide" id="privacy_term">
+                            <div class="modal" style="display: inline-block;">
+                                <div class="modal-header">
+                                    <h2 class="modal-title">Chính sách bảo mật</h2>
+                                    <span class="close" data-toggle="#privacy_term" data-toggle-class="hide">×</span>
+                                </div>
+                                <div class="modal-body">
+                                    <pre class="term-preview">CHÍNH SÁCH BẢO MẬT
+Cám ơn quý khách đã quan tâm và truy cập vào website. Chúng tôi tôn trọng và cam kết sẽ bảo mật những thông tin mang tính riêng tư của Quý khách.
+Chính sách bảo mật sẽ giải thích cách chúng tôi tiếp nhận, sử dụng và (trong trường hợp nào đó) tiết lộ thông tin cá nhân của Quý khách.
+Bảo vệ dữ liệu cá nhân và gây dựng được niềm tin cho quý khách là vấn đề rất quan trọng với chúng tôi. Vì vậy, chúng tôi sẽ dùng tên và các thông tin khác liên quan đến quý khách tuân thủ theo nội dung của Chính sách bảo mật. Chúng tôi chỉ thu thập những thông tin cần thiết liên quan đến giao dịch mua bán.
+Chúng tôi sẽ giữ thông tin của khách hàng trong thời gian luật pháp quy định hoặc cho mục đích nào đó. Quý khách có thể truy cập vào website và trình duyệt mà không cần phải cung cấp chi tiết cá nhân. Lúc đó, Quý khách đang ẩn danh và chúng tôi không thể biết bạn là ai nếu Quý khách không đăng nhập vào tài khoản của mình.
+1. Thu thập thông tin cá nhân
+- Chúng tôi thu thập, lưu trữ và xử lý thông tin của bạn cho quá trình mua hàng và cho những thông báo sau này liên quan đến đơn hàng, và để cung cấp dịch vụ, bao gồm một số thông tin cá nhân: danh hiệu, tên, giới tính, ngày sinh, email, địa chỉ, địa chỉ giao hàng, số điện thoại, fax, chi tiết thanh toán, chi tiết thanh toán bằng thẻ hoặc chi tiết tài khoản ngân hàng.
+- Chúng tôi sẽ dùng thông tin quý khách đã cung cấp để xử lý đơn đặt hàng, cung cấp các dịch vụ và thông tin yêu cầu thông qua website và theo yêu cầu của bạn.
+- Hơn nữa, chúng tôi sẽ sử dụng các thông tin đó để quản lý tài khoản của bạn; xác minh và thực hiện giao dịch trực tuyến, nhận diện khách vào web, nghiên cứu nhân khẩu học, gửi thông tin bao gồm thông tin sản phẩm và dịch vụ. Nếu quý khách không muốn nhận bất cứ thông tin tiếp thị của chúng tôi thì có thể từ chối bất cứ lúc nào.
+- Chúng tôi có thể chuyển tên và địa chỉ cho bên thứ ba để họ giao hàng cho bạn (ví dụ cho bên chuyển phát nhanh hoặc nhà cung cấp).
+- Chi tiết đơn đặt hàng của bạn được chúng tôi lưu giữ nhưng vì lí do bảo mật nên chúng tôi không công khai trực tiếp được. Tuy nhiên, quý khách có thể tiếp cận thông tin bằng cách đăng nhập tài khoản trên web. Tại đây, quý khách sẽ thấy chi tiết đơn đặt hàng của mình, những sản phẩm đã nhận và những sản phẩm đã gửi và chi tiết email, ngân hàng và bản tin mà bạn đặt theo dõi dài hạn.
+- Quý khách cam kết bảo mật dữ liệu cá nhân và không được phép tiết lộ cho bên thứ ba. Chúng tôi không chịu bất kỳ trách nhiệm nào cho việc dùng sai mật khẩu nếu đây không phải lỗi của chúng tôi.
+- Chúng tôi có thể dùng thông tin cá nhân của bạn để nghiên cứu thị trường. mọi thông tin chi tiết sẽ được ẩn và chỉ được dùng để thống kê. Quý khách có thể từ chối không tham gia bất cứ lúc nào.
+2. Bảo mật
+- Chúng tôi có biện pháp thích hợp về kỹ thuật và an ninh để ngăn chặn truy cập trái phép hoặc trái pháp luật hoặc mất mát hoặc tiêu hủy hoặc thiệt hại cho thông tin của bạn.
+- Chúng tôi khuyên quý khách không nên đưa thông tin chi tiết về việc thanh toán với bất kỳ ai bằng e-mail, chúng tôi không chịu trách nhiệm về những mất mát quý khách có thể gánh chịu trong việc trao đổi thông tin của quý khách qua internet hoặc email.
+- Quý khách tuyệt đối không sử dụng bất kỳ chương trình, công cụ hay hình thức nào khác để can thiệp vào hệ thống hay làm thay đổi cấu trúc dữ liệu. Nghiêm cấm việc phát tán, truyền bá hay cổ vũ cho bất kỳ hoạt động nào nhằm can thiệp, phá hoại hay xâm nhập vào dữ liệu của hệ thống website. Mọi vi phạm sẽ bị tước bỏ mọi quyền lợi cũng như sẽ bị truy tố trước pháp luật nếu cần thiết.
+- Mọi thông tin giao dịch sẽ được bảo mật nhưng trong trường hợp cơ quan pháp luật yêu cầu, chúng tôi sẽ buộc phải cung cấp những thông tin này cho các cơ quan pháp luật.
+Các điều kiện, điều khoản và nội dung của trang web này được điều chỉnh bởi luật pháp Việt Nam và tòa án Việt Nam có thẩm quyền xem xét.
+3. Quyền lợi khách hàng
+-Quý khách có quyền yêu cầu truy cập vào dữ liệu cá nhân của mình, có quyền yêu cầu chúng tôi sửa lại những sai sót trong dữ liệu của bạn mà không mất phí. Bất cứ lúc nào bạn cũng có quyền yêu cầu chúng tôi ngưng sử dụng dữ liệu cá nhân của bạn cho mục đích tiếp thị.</pre>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-wrapper hide" id="service_term">
+                            <div class="modal" style="display: inline-block;">
+                                <div class="modal-header">
+                                    <h2 class="modal-title">Điều khoản sử dụng</h2>
+                                    <span class="close" data-toggle="#service_term" data-toggle-class="hide">×</span>
+                                </div>
+                                <div class="modal-body">
+                                    <pre class="term-preview"></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </main>
+                <aside class="sidebar">
+                    <div class="sidebar__header">
+                        <h1 class="sidebar__title">
+                            Đơn hàng (@sp.SPDaThem.Count() sản phẩm)
+                        </h1>
+                    </div>
+                    <div class="sidebar__content">
+                        <div id="order-summary" class="order-summary order-summary--is-collapsed">
+                            <div class="order-summary__sections">
+                                <div class="order-summary__section order-summary__section--product-list order-summary__section--is-scrollable order-summary--collapse-element">
+                                    <table class="product-table">
+                                        <caption class="visually-hidden">Chi tiết đơn hàng</caption>
+                                        <thead class="product-table__header">
+                                            <tr>
+                                                <th>
+                                                    <span class="visually-hidden">Ảnh sản phẩm</span>
+                                                </th>
+                                                <th>
+                                                    <span class="visually-hidden">Mô tả</span>
+                                                </th>
+                                                <th>
+                                                    <span class="visually-hidden">Sổ lượng</span>
+                                                </th>
+                                                <th>
+                                                    <span class="visually-hidden">Đơn giá</span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @{
+                                                foreach (CtDonHang i in sp.SPDaThem.Values)
+                                                {
+                                                    <tr class="product">
+                                                        <td class="product__image">
+                                                            <div class="product-thumbnail">
+                                                                <div class="product-thumbnail__wrapper" data-tg-static="">
+                                                                    <img src="@DetailsCart.getImageOfSPByMaSP(i.maSP)"
+                                                                         alt=""
+                                                                         class="product-thumbnail__image">
+                                                                </div>
+                                                                <span class="product-thumbnail__quantity">@i.soLuong</span>
+                                                            </div>
+                                                        </td>
+                                                        <th class="product__description">
+                                                            <span class="product__description__name">
+                                                                @DetailsCart.getNameOfSPByMaSP(i.maSP)
+                                                            </span>
+
+                                                            <span class="product__description__property">
+                                                                41
+                                                            </span>
+
+
+                                                        </th>
+                                                        <td class="product__quantity visually-hidden"><em>Số lượng:</em> @i.soLuong</td>
+                                                        <td class="product__price">
+
+                                                            @sp.moneyOfOneSP(i) đ
+
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            }
+
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="order-summary__section order-summary__section--discount-code"
+                                     data-tg-refresh="refreshDiscount" id="discountCode">
+                                    <h3 class="visually-hidden">Mã khuyến mại</h3>
+                                    <div class="edit_checkout animate-floating-labels">
+                                        <div class="fieldset">
+                                            <div class="field">
+                                                <div class="field__input-btn-wrapper">
+                                                    <div class="field__input-wrapper">
+                                                        <label for="reductionCode" class="field__label">
+                                                            Nhập mã giảm
+                                                            giá
+                                                        </label>
+                                                        <input name="reductionCode" id="reductionCode" type="text"
+                                                               class="field__input" autocomplete="off">
+                                                    </div>
+                                                    <button class="field__input-btn btn spinner btn--disabled" type="button">
+                                                        <span class="spinner-label">Áp dụng</span>
+                                                    </button>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="order-summary__section order-summary__section--total-lines order-summary--collapse-element">
+                                    <table class="total-line-table">
+                                        <caption class="visually-hidden">Tổng giá trị</caption>
+                                        <thead>
+                                            <tr>
+                                                <td><span class="visually-hidden">Mô tả</span></td>
+                                                <td><span class="visually-hidden">Giá tiền</span></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="total-line-table__tbody">
+                                            <tr class="total-line total-line--subtotal">
+                                                <th class="total-line__name">
+                                                    Tạm tính
+                                                </th>
+                                                <td class="total-line__price">@sp.totalOfMapCart() ₫</td>
+                                            </tr>
+
+                                            <tr class="total-line total-line--shipping-fee">
+                                                <th class="total-line__name">
+                                                    Phí vận chuyển
+                                                </th>
+                                                <td class="total-line__price" data-bind="getTextShippingPrice()">-</td>
+                                            </tr>
+
+                                        </tbody>
+                                        <tfoot class="total-line-table__footer">
+                                            <tr class="total-line payment-due">
+                                                <th class="total-line__name">
+                                                    <span class="payment-due__label-total">
+                                                        Tổng cộng
+                                                    </span>
+                                                </th>
+                                                <td class="total-line__price">
+                                                    <span class="payment-due__price"
+                                                          data-bind="getTextTotalPrice()">@sp.totalOfMapCart() ₫</span>
+                                                    </td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                    <div class="order-summary__nav field__input-btn-wrapper hide-on-mobile layout-flex--row-reverse">
+                                       <button type="submit" class="btn btn-primary">Đặt Hàng</button>
+
+
+                                        <a href='@Url.Action("Index", "Cart")' class="previous-link">
+                                            <i class="previous-link__arrow">❮</i>
+                                            <span class="previous-link__content">Quay về giỏ hàng</span>
+                                        </a>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        }
+
+</body>
+
+</html>

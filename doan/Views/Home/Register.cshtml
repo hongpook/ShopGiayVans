@@ -1,0 +1,112 @@
+﻿@using doan.Models
+@model doan.Models.khachHang
+@{
+    ViewBag.title = "Register";
+    ViewBag.page = "Đăng ký tài khoản";
+    ViewBag.pageName = "Đăng ký";
+}
+<style>
+    .form-horizontal {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+</style>
+<div class="top-bar">
+    <h2>@ViewBag.page</h2>
+    <ul>
+        <li>@Html.ActionLink("Trang chủ", "Index", "Home")</li>
+        <li>/</li>
+        <li>@ViewBag.page</li>
+    </ul>
+</div>
+<div class="container p-bt">
+    <h3 class="text-center">@ViewBag.pageName</h3>
+    
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+    <div class="form-group col-lg-12">
+        <lable>Họ đệm</lable>
+        <div class="">
+            @Html.TextBoxFor(model => model.hoDem,  new { @class = "form-control" , placehoder = "Họ đệm" } )
+            @Html.ValidationMessageFor(model => model.hoDem, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group col-lg-12">
+        <lable>Tên</lable>
+        <div class="">
+            @Html.TextBoxFor(model => model.tenKH, new { @class = "form-control" } )
+            @Html.ValidationMessageFor(model => model.tenKH, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group col-lg-12">
+        <lable>Số điện thoại</lable>
+        <div class="">
+            @Html.TextBoxFor(model => model.soDT,new { @class = "form-control" } )
+            @Html.ValidationMessageFor(model => model.soDT, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group col-lg-12">
+        <lable>Email</lable>
+        <div class="">
+            @Html.TextBoxFor(model => model.email, new { @class = "form-control"  })
+            @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group col-lg-12">
+        <lable>Ngày sinh</lable>
+        <div class="">
+            @Html.TextBoxFor(model => model.ngaySinh, new { @class = "form-control" , type = "date"} )
+            @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group col-lg-12">
+        <lable>Giới tính</lable>
+        <div class="">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.gioiTinh)
+                @Html.ValidationMessageFor(model => model.gioiTinh, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group col-lg-12">
+        <lable>Mật khẩu</lable>
+        <div class="">
+            @Html.PasswordFor(model => model.matKhau,  new { @class = "form-control" } )
+            @Html.ValidationMessageFor(model => model.matKhau, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group  col-lg-12">
+        <div class="">
+            <input type="submit" value="Đăng kí" class="btn btn-danger" />
+        </div>
+    </div>
+    <div class="pass-body">
+        <p>Đã có tài khoản, đăng nhập @Html.ActionLink("tại đây", "Login", "Home")</p>
+        <p>Hoặc đăng nhập bằng</p>
+        <div class="pass-img">
+            <img src="~/Images/fb.jpg" />
+            <img src="~/Images/gg.jpg" />
+        </div>
+    </div>
+</div>
+}
+
+
+
+</div>
+

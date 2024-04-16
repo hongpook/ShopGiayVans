@@ -1,0 +1,192 @@
+﻿@using doan.Models;
+@{ 
+    ViewBag.title = "Giỏ hàng";
+    mapcart sp = (mapcart)ViewData["Cart"];
+}
+<style>
+    table{
+        margin-bottom:20px;
+    }
+    td,tr{
+        border-bottom: 1px solid #ccc;
+        padding: 10px 20px;
+    }
+    td img{
+        width : 100%;
+    }
+    td.cart-img {
+        display: flex;
+        align-items: center;
+    }
+    td p{
+        margin : 0;
+    }
+    td a {
+        color: #707070;
+    }
+    td a:hover{
+        color: red;
+    }
+    button {
+        border: none;
+        background-color:#ffffff;
+    }
+    .btn-danger,
+    .btn-default {
+        border-radius: 0px;
+        padding: 15px 25px;
+        margin-left: 20px;
+    }
+    .btn-danger {
+        color: #fff;
+        background-color: #d9534f;
+    }
+    .btn-danger:hover {
+        color: red;
+        background-color: #fff;
+    }
+    .btn-default:hover {
+        border: 1px solid #ff0000;
+        background-color: #fff;
+    }
+    .btn-cartShop {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+</style>
+<div class="top-bar">
+    <h2>@ViewBag.title</h2>
+    <ul>
+        <li>@Html.ActionLink("Trang chủ", "Index", "Home")</li>
+        <li>/</li>
+        <li>@ViewBag.title</li>
+    </ul>
+</div>
+<div class="container p-bt">
+
+
+    @{
+        if (sp == null)
+        {
+            @ViewBag.gh
+        }
+        else
+        {
+            <table class="an">
+                <thead>
+                    <tr>
+                        <td class="col-lg-5">Sản phẩm</td>
+                        <td class="col-lg-3">Số lượng</td>
+                        <td class="col-lg-3">Tổng tiền</td>
+                        <td class="col-lg-1">Xóa</td>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    @{
+
+                        foreach (CtDonHang i in sp.SPDaThem.Values)
+                        {
+                            <tr>
+                                <td class="cart-img">
+                                    <a class="col-lg-3" href="@Url.Action("Index", "ProductDetails", new { maSP = i.maSP })"><img src="@DetailsCart.getImageOfSPByMaSP(i.maSP)" /></a>
+                                    <div class="col-lg-9">
+                                        <a href="@Url.Action("Index", "ProductDetails", new { maSP = i.maSP })">@DetailsCart.getNameOfSPByMaSP(i.maSP)</a>
+                                        <p>41</p>
+                                        <p>Giá bán: @i.giaBan đ</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="purchase-number col-lg-4">
+
+                                        @*Nút giảm số lượng*@
+                                        @using (Html.BeginForm("ReduceSP", "Cart", FormMethod.Post))
+                                        {
+                                            <input name="maSP" type="hidden" value="@i.maSP" />
+                                            <button>-</button>
+                                        }
+
+                                        @*Hiển thị số lượng*@
+                                        <span class="num">@i.soLuong</span>
+
+                                        @*Nút tăng số lượng*@
+                                        @using (Html.BeginForm("MoveSP", "Cart", FormMethod.Post))
+                                        {
+                                            <input name="maSP" type="hidden" value="@i.maSP" />
+                                            <button>+</button>
+                                        }
+                                    </div>
+                                </td>
+                                <td>
+                                    @sp.moneyOfOneSP(i) đ
+                                </td>
+                                <td>
+                                    @using (Html.BeginForm("RemoveSP", "Cart", FormMethod.Post))
+                                    {
+                                        <input name="maSP" type="hidden" value="@i.maSP" />
+                                        <button><i class="fa-solid fa-trash-can"></i></button>
+                                    }
+
+                                </td>
+                            </tr>
+                        }
+                    }
+
+
+                </tbody>
+            </table>
+
+            foreach (CtDonHang i in sp.SPDaThem.Values)
+            {
+                <div class="hien an2">
+                    <div class="col-xs-12">
+                        <a class="col-xs-2" href="@Url.Action("Index", "ProductDetails", new {maSP = i.maSP})"><img src="@DetailsCart.getImageOfSPByMaSP(i.maSP)" class="img-rp" style="width: 100%"/></a>
+                        <div class="col-xs-5">
+                            <a href="@Url.Action("Index", "ProductDetails", new {maSP = i.maSP})">@DetailsCart.getNameOfSPByMaSP(i.maSP)</a>
+                            <p>Giá bán: @i.giaBan đ</p>
+                        </div>
+                        <div class="col-xs-5">
+                            <div class="purchase-number col-xs-12">
+                                @using (Html.BeginForm("ReduceSP", "Cart", FormMethod.Post))
+                                {
+                                    <input name="maSP" type="hidden" value="@i.maSP" />
+                                    @*<span class="minus">-</span>*@
+                                    <button>-</button>
+                                }
+
+                                <span class="num">@i.soLuong</span>
+
+                                @using (Html.BeginForm("MoveSP", "Cart", FormMethod.Post))
+                                {
+                                    <input name="maSP" type="hidden" value="@i.maSP" />
+                                    @*<span class="plus">+</span>*@
+                                    <button>+</button>
+                                }
+                            </div>
+                            <div class="col-xs-12">
+                                @using (Html.BeginForm("RemoveSP", "Cart", FormMethod.Post))
+                                {
+                                    <input name="maSP" type="hidden" value="@i.maSP" />
+                                    <button><i class="fa-solid fa-trash-can"></i></button>
+                                }
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            }
+
+            <div class="btn-cartShop col-lg-11 col-xs-12">
+                <h3>Tổng tiền: @sp.totalOfMapCart() đ</h3>
+                <div class="">
+                    <button class="btn btn-default" onclick="window.location.href = '@Url.Action("Index" , "Home")'">Tiếp tục mua hàng</button>
+                    <button class="btn btn-danger" onclick="window.location.href = '@Url.Action("Index" , "CheckOut")'">Tiến hành thanh toán</button>
+                </div>
+            </div>
+        }
+    }
+
+</div>
+

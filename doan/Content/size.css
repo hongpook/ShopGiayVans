@@ -1,0 +1,17 @@
+﻿.size-content {
+    width: 80%;
+    margin: 0 auto;
+}
+.size-content img {
+    margin: 20px 0;
+    max-width: 100%;
+}
+.size-content p{
+    margin: 20px 0;
+}
+.size-content h2:hover {
+    color: #e1182c;
+}
+
+
+

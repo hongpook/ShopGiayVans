@@ -1,0 +1,220 @@
+﻿#home, #menu1, #menu2, #menu3 {
+    border: 1px solid #ccc;
+}
+
+.prd-details p {
+    margin-bottom: 30px;
+}
+
+    .prd-details p span {
+        color: #008000;
+    }
+
+.price p {
+    font-size: 30px;
+    color: #e1182c;
+    margin-bottom: 40px;
+}
+
+.product-size {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.o {
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    margin: 5px;
+    cursor: pointer;
+    width: fit-content;
+}
+
+    .o:hover {
+        border: 1px solid #e1182c;
+    }
+
+    .o.active {
+        border: 1px solid #e1182c;
+    }
+
+.nav.nav-tabs ul li a img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.pb-t {
+    padding-top: 40px;
+}
+
+.size {
+    width: fit-content;
+    padding: 20px 0;
+}
+/* ------------- */
+.purchase {
+    margin: 30px 0;
+    display: flex;
+    align-items: center;
+}
+
+.purchase-number {
+    display: flex;
+    align-items: center;
+}
+
+.minus,
+.plus {
+    border: none;
+    background-color: #fff;
+    font-size: 20px;
+    color: rgb(130, 126, 126);
+    cursor: pointer;
+}
+
+.num {
+    border: 1px solid #ccc;
+    padding: 15px 35px;
+    margin: 0 10px;
+}
+
+.purchase button {
+    background-color: #e1182c;
+    color: #fff;
+    height: 52px;
+    border: none;
+    border-radius: 0;
+}
+
+    .purchase button:hover {
+        background-color: #011c85;
+    }
+/* -------------modal--- */
+.modal-body {
+    text-align: center;
+}
+
+    .modal-body img {
+        width: 100px;
+    }
+
+.modal-top {
+    font-size: 12px;
+}
+
+    .modal-top a {
+        color: #252525;
+    }
+
+.modal-body span {
+    color: #e1182c;
+}
+
+.modal-body button {
+    padding: 15px 40px;
+    border-radius: 0;
+    border: 1px solid #e1182c;
+}
+
+    .modal-body button:hover {
+        background-color: #fff;
+        border: 1px solid #e1182c;
+        color: #e1182c;
+    }
+
+button.close {
+    position: relative;
+    top: -20px;
+    right: -20px;
+    color: #fff;
+}
+
+.size-chart {
+    color: #2980b9;
+}
+
+    .size-chart:hover {
+        color: #2980b9;
+    }
+
+a:hover {
+    text-decoration: none;
+}
+
+/* ------------- */
+.product-wrapper img {
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.product-content-top {
+    text-align: center;
+    margin-bottom: 60px;
+    display: flex;
+    justify-content: center;
+}
+
+.product-content-body {
+    margin-bottom: 60px;
+}
+
+.tab-product {
+    border: 1px solid #ccc;
+    height: 45px;
+    color: #252525;
+    cursor: pointer;
+    line-height: 45px;
+}
+
+    .tab-product:hover {
+        color: #252525;
+    }
+
+    .tab-product.active {
+        border: 1px solid #e1182c;
+    }
+
+.tab-content-product {
+    display: none;
+}
+
+    .tab-content-product.active {
+        display: block;
+    }
+
+/* ---------- */
+.shoes {
+    background-image: url('../Images/bg_hotline.jpg');
+    margin-bottom: 30px;
+}
+
+.shoes-wrapper {
+    padding: 100px 0;
+}
+
+.shoes-body {
+    border: 1px solid #fff;
+    width: 80%;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+}
+
+    .shoes-body .title-head a {
+        color: #fff;
+    }
+
+    .shoes-body .dot {
+        border-top: 1px solid #fff;
+        width: 50%;
+    }
+
+#home img,
+#menu1 img,
+#menu2 img{
+    width: 100%;
+}
+
+
+.size-content table td {
+    padding: 15px;
+}

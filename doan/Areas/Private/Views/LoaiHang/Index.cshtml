@@ -1,0 +1,129 @@
+﻿@model doan.Models.loaiSP
+@using doan.Models
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Private/Views/Shared/_Layout.cshtml";
+    List<loaiSP> l = (List<loaiSP>)ViewData["DSLoai"];
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header margin-b">
+        <h1>
+            Chủng loại sản phẩm
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="@Url.Action("Index" , "TrangChu")"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Sán phẩm đang bán</li>
+        </ol>
+    </section>
+
+
+    <!--Content - left-->
+    <section>
+        <div class="col-lg-8 col-xs-8">
+            <div class="box box-danger">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Các loại sản phẩm đang bán</h3>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                    </div>
+                </div>
+                <div class="box-body ">
+
+
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Mã loại</th>
+                                <th>Tên loại</th>
+                                <th>Nhóm loại</th>
+                                <th>Tồn Kho</th>
+                                <th>Nhóm lệnh</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (loaiSP s in l)
+                            {
+                                <tr>
+                                    <td>@s.maLoai</td>
+                                    <td>@s.tenLoai</td>
+                                    <td>@s.nhomLoai</td>
+                                    <td>@common.getSanPhamByLoaiSP(s.maLoai).Count()</td>
+                                    <td>
+                                        @using (Html.BeginForm("Update", "LoaiHang", FormMethod.Post))
+                                        {
+                                            <input type="hidden" name="ml" value="@s.maLoai" />
+                                            <button title="Chỉnh Sửa Sản Phẩm" class="btn"><i class="fa-regular fa-pen-to-square"></i></button>
+                                        }
+
+
+                                        @using (Html.BeginForm("Delete", "LoaiHang", FormMethod.Post))
+                                        {
+                                            <input type="hidden" name="s" value="@s.maLoai" />
+                                            <button title="Xóa Sản Phẩm" class="btn btn-danger"><i class="fa-solid fa-xmark"></i></button>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+        <!--Content - right-->
+        <div class="col-lg-4 col-xs-4">
+            <div class="box box-danger">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Thêm loại sản phẩm</h3>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                    </div>
+                </div>
+                <div class="box-body ">
+                    @using (Html.BeginForm("Index", "LoaiHang", FormMethod.Post))
+                    {
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label class="control-lable">Mã loại sản phẩm</label>
+                                @Html.TextBoxFor(m => m.maLoai, new { @class = "form-control col-lg-12", placeholder = "Nhập mã loại", type = "number" })
+                            </div>
+                            <div class="form-group">
+                                <label class="control-lable">Tên loại sản phẩm</label>
+                                @Html.TextBoxFor(m => m.tenLoai, new { @class = "form-control col-lg-12", placeholder = "Nhập tên loại" })
+                            </div>
+                            <div class="form-group">
+                                <label class="control-lable">Nhóm loại sản phẩm</label>
+                                @Html.TextBoxFor(m => m.nhomLoai, new { @class = "form-control col-lg-12", placeholder = "Nhập nhóm loại", type = "number" })
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Lưu thông tin</button>
+                                <a href='@Url.Action("Index" , "LoaiHang")' class="btn btn-danger">Hủy</a>
+                            </div>
+                        </div>
+                    }
+
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+
+
+</div>
+
+
+

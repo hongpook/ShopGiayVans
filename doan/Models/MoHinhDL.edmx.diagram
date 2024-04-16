@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5073be6f714d45309abcc9fce5e714c0" Name="Diagram1">
+        <EntityTypeShape EntityType="ShopGiayVansModel.baiViet" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopGiayVansModel.CtDonHang" Width="1.5" PointX="8.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopGiayVansModel.donHang" Width="1.5" PointX="6" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopGiayVansModel.khachHang" Width="1.5" PointX="3.75" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopGiayVansModel.loaiSP" Width="1.5" PointX="3.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopGiayVansModel.loaiTin" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopGiayVansModel.quanTri" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopGiayVansModel.sanPham" Width="1.5" PointX="6" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopGiayVansModel.sysdiagrams" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="ShopGiayVansModel.fk_BV_LT" ManuallyRouted="false" />
+        <AssociationConnector Association="ShopGiayVansModel.fk_BV_QT" ManuallyRouted="false" />
+        <AssociationConnector Association="ShopGiayVansModel.Pk_CTDH_DH" ManuallyRouted="false" />
+        <AssociationConnector Association="ShopGiayVansModel.Pk_CTDH_SP" ManuallyRouted="false" />
+        <AssociationConnector Association="ShopGiayVansModel.Pk_DH_KH" ManuallyRouted="false" />
+        <AssociationConnector Association="ShopGiayVansModel.fk_SP_LSP" ManuallyRouted="false" />
+        <AssociationConnector Association="ShopGiayVansModel.FK__sanPham__email__15502E78" ManuallyRouted="false" />
+        <AssociationConnector Association="ShopGiayVansModel.Pk_CTDH_KH" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

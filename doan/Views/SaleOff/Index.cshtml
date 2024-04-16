@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Sale Off";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.pageName = "SALE OFF Độc Quyền Online - Giảm Giá Hot Nhất Tại VANS Việt Nam";
+    ViewBag.page = "SALE OFF";
+}
+
+
+<div class="top-bar">
+    <h2>@ViewBag.pageName</h2>
+    <ul>
+        <li>@Html.ActionLink("Trang chủ", "Index", "Home")</li>
+        <li>/</li>
+        <li>@ViewBag.page</li>
+    </ul>
+</div>
+<div class="container p-bt">
+    <div class="text-success alert-success">
+        <p>Hiện tại không có khuyến mãi</p>
+    </div>
+</div>

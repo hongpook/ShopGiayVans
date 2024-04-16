@@ -1,0 +1,46 @@
+﻿@using doan.Models;
+@{ 
+    string key = Request.QueryString["key"];
+    List<sanPham> result = new List<sanPham>();
+}
+
+
+<div class="top-bar">
+    <h2>@ViewBag.seach</h2>
+    <ul>
+        <li>@Html.ActionLink("Trang chủ", "Index", "Home")</li>
+        <li>/</li>
+        <li>@ViewBag.page</li>
+        
+    </ul>
+</div>
+<div class="container p-bt">
+
+    <h2>Từ khóa @key</h2>
+    @{
+        if (string.IsNullOrEmpty(key))
+        {
+
+            <h3>Vui lòng nhập từ khóa</h3>
+        }
+        else
+        {
+            if (key == "" || key.Length < 2)
+            {
+
+
+                <h3>Vui lòng nhập từ khóa</h3>
+            }
+            else
+            {
+                result = filter.seachByKey(key);
+                foreach (var i in result)
+                {
+
+                }
+            }
+        }
+
+
+    }
+</div>

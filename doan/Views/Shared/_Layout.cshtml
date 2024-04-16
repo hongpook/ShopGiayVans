@@ -1,0 +1,312 @@
+﻿@using doan.Models;
+@{
+    mapcart sp = (mapcart)ViewData["Cart"];
+    ViewBag.gh = "Khong co gi";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title </title>
+    <link rel="icon" type="image/x-icon" href="~/Images/logo-ft.jpg">
+    <script src="https://kit.fontawesome.com/87794f3760.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/style.css">
+    <link rel="stylesheet" href="~/Content/login.css">
+    <link rel="stylesheet" href="~/Content/size.css">
+    <link href="~/Content/shoes.css" rel="stylesheet" />
+    <link href="~/Content/productDetail.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="header">
+        <div class="header-body-top">
+            <div class="section-top container">
+                <div class="header-body-items col-lg-11">
+                    <a href="#">cskh.vans@gmail.com</a>
+                    <span>/</span>
+                    <a href="#">0394421371</a>
+                </div>
+                <div class="header-body-items">
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                            <i class="fa-solid fa-user"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            @if (Session["MaKH"] != null)
+                            {
+                                <li>@Html.ActionLink("Thông tin cá nhân", "Index", "TTKhachHang")</li>
+                                <li>@Html.ActionLink("Đăng xuất", "Logout", "Home")</li>
+                            }
+                            else
+                            {
+                                <li>@Html.ActionLink("Đăng kí", "Register", "Home")</li>
+                                <li>@Html.ActionLink("Đăng nhập", "Login", "Home")</li>
+                                <li>@Html.ActionLink("Đăng nhập cho admin", "Index", "DangNhap")</li>
+                            }
+
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="section-bottom container">
+            <div class="logo">
+                <a href='@Url.Action("Index", "Home")'><img src="~/Images/logo-vans.jpg" alt=""></a>
+            </div>
+            <div class="nav-menu an">
+                <ul>
+                    <li>@Html.ActionLink("All vans", "Index", "Shoes")</li>
+                    <li>
+                        <a>Shoes <i class="fa-solid fa-caret-down"></i></a>
+                        <div class="sub-nav">
+                            <div class="sub-nav-body">
+                                @{
+                                    foreach (loaiSP s in common.getNhomLoai(1))
+                                    {
+
+                                        <a class="sub-nav-links" href='@Url.Action("Index", "ProductList", new {maloai = s.maLoai})'>@s.tenLoai</a>
+
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </li>
+                    <li>@Html.ActionLink("NEW ARRIVALS", "Index", "Shoes")</li>
+                    <li>
+                        <a>Backpack <i class="fa-solid fa-caret-down"></i></a>
+                        <div class="sub-nav">
+                            <div class="sub-nav-body">
+                                @{
+                                    foreach (loaiSP s in common.getNhomLoai(2))
+                                    {
+
+                                        <a class="sub-nav-links" href='@Url.Action("Index", "ProductList", new {maloai = s.maLoai})'>@s.tenLoai</a>
+
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a>Clothes <i class="fa-solid fa-caret-down"></i></a>
+                        <div class="sub-nav">
+                            <div class="sub-nav-body">
+                                @{
+                                    foreach (loaiSP s in common.getNhomLoai(3))
+                                    {
+
+                                        <a class="sub-nav-links" href='@Url.Action("Index", "ProductList", new {maloai = s.maLoai})'>@s.tenLoai</a>
+
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </li>
+                    <li>@Html.ActionLink("SALE OFF", "Index" , "SaleOff")</li>
+                    <li>@Html.ActionLink("SIZE CHART", "Index", "SizeChart")</li>
+                    <li>@Html.ActionLink("ABOUT US" , "Index", "AboutUs")</li>
+                    <li>@Html.ActionLink("LATEST VANS NEWS", "Index", "News")</li>
+                </ul>
+            </div>
+            
+            
+
+            <div class="seach-shop">
+                <div class="seach">
+                    <a>
+                        @*'@Url.Action("Index", "Seach")'*@
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <div class="sub-seach">
+                            <div class="sub-seach-body">
+                                @using (Html.BeginForm("Index" , "Seach", FormMethod.Post))
+            {
+                                    <input type="text" name="seachKey" class="form-control"/>
+                                    <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+            }
+                               
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="shop">
+                    <a href='@Url.Action("Index", "Cart")'>
+                        <i class="fa-sharp fa-solid fa-bag-shopping"></i>
+                        <span>0</span>
+                        <div class="sub-shop">
+                            <div class="sub-shop-body">
+                                @{
+                                    if (sp == null)
+                                    {
+                                        @ViewBag.gh
+                                    }
+                                    else
+                                    {
+                                <div class="order-summary__section order-summary__section--product-list order-summary__section--is-scrollable order-summary--collapse-element">
+                                    <table class="product-table">
+                                        <tbody>
+                                            @{
+                                                foreach (CtDonHang i in sp.SPDaThem.Values)
+                                                {
+                                                   
+                                                    <tr>
+                                                        <td>
+                                                            <img src="@DetailsCart.getImageOfSPByMaSP(i.maSP)" />
+                                                        </td>
+                                                        <td>
+                                                            <a href="@Url.Action("Index", "ProductDetails", new {maSP = i.maSP})">
+                                                                @DetailsCart.getNameOfSPByMaSP(i.maSP)
+                                                            </a>
+                                                            <p class="text-danger">@i.giaBan đ</p>
+                                                        </td>
+                                                        <td>
+                                                            @using (Html.BeginForm("RemoveSP", "Cart", FormMethod.Post))
+                                                            {
+                                                                <input name="maSP" type="hidden" value="@i.maSP" />
+                                                                <button><i class="fa-solid fa-xmark"></i></button>
+                                                            }
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            }
+
+                                        </tbody>
+                                    </table>
+                                    <h3>Tổng thành tiền: @sp.totalOfMapCart() đ</h3>
+                                    <btn class="btn btn-danger col-lg-10">Tới Giỏ hàng</btn>
+                                </div>
+                                    }
+                                }
+
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="an2 hien ">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+    </div>
+    <div class="body-content">
+        @RenderBody()
+
+    </div>
+    <div class="footer">
+        <div class="footer-top">
+            <h3>NHẬP EMAIL</h3>
+            <p>Để nhận tin tức khuyến mãi từ cửa hàng của chúng tôi</p>
+            <form action="">
+                <input type="email" placeholder="Nhập email của bạn" />
+                <input type="submit" value="Gửi ngay">
+            </form>
+        </div>
+        <div class="footer-bottom ">
+            <div class="footer-bottom-body container">
+
+                <ul class="row col-lg-9">
+                    <li class="col-md-6">
+                        <a href="#"><h4>Trải Nghiệm VANS Store Ngay Tại Nhà</h4></a>
+                        <p>Hệ Thống VANS Online</p>
+                        <p>Địa chỉ: Hồ Chí Minh</p>
+                        <p>Hotline:<a href="#">0394421371</a></p>
+
+                    </li>
+                    <li class="col-md-3">
+                        <a href="#"><h4>Về Chúng Tôi</h4></a>
+                        <a href="#">About Us</a>
+                        <a href="#">SizeChart</a>
+                        <a href="#">Hệ thống cửa hàng</a>
+                    </li>
+                    <li class="col-md-3">
+                        <a href="#"><h4>Chính Sách</h4></a>
+                        <a href="#">Chính sách thanh toán</a>
+                        <a href="#">Chính sách đổi trả</a>
+                        <a href="#">Chính sách bảo hành</a>
+
+                    </li>
+                </ul>
+                <img src="~/Images/logo-ft.jpg" class="col-lg-3" alt="">
+            </div>
+        </div>
+        <div class="footer-cpyright">
+            <p>© Bản quyền thuộc về <a href="#">VANS Việt Nam</a> | Cung cấp bởi VANS</p>
+        </div>
+    </div>
+    <div class="message">
+        <a href="#"><img src="~/Images/message.png" /></a>
+    </div>
+
+    <script src="~/Areas/Private/Script/jquery.min.js"></script>
+    <script src="~/Areas/Private/Script/jquery.min_2_1_3.js"></script>
+    @*<script src="~/Scripts/render.js"></script>*@
+    <script src="~/Areas/Private/Script/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".nav-tabs a").click(function () {
+                $(this).tab('show');
+            });
+            $('.nav-tabs a').on('shown.bs.tab', function (event) {
+                var x = $(event.target).text();         // active tab
+                var y = $(event.relatedTarget).text();  // previous tab
+                $(".act span").text(x);
+                $(".prev span").text(y);
+            });
+        });
+    </script>
+    <script>
+        const $s = document.querySelector.bind(document)
+        const $es = document.querySelectorAll.bind(document)
+        const tab = $es('.o')
+        const minus = $s('.minus')
+        const num = $s('.num')
+        const plus = $s('.plus')
+        const tabSize = $es('.tab-product')
+        const tabContentProducts = $es('.tab-content-product')
+        // size
+        tab.forEach((item, index) => {
+            item.onclick = function () {
+                $s('.o.active').classList.remove('active')
+                item.classList.add('active')
+            }
+        });
+
+
+        //size-chart
+        tabSize.forEach((item, index) => {
+            var tabContentProduct = tabContentProducts[index]
+            item.onclick = function () {
+                $s('.tab-product.active').classList.remove('active')
+                $s('.tab-content-product.active').classList.remove('active')
+                item.classList.add('active')
+                tabContentProduct.classList.add('active')
+            }
+        });
+
+
+        // -------
+        let a = 1;
+
+        plus.addEventListener('click', () => {
+            a++
+            num.innerText = a
+        })
+        minus.addEventListener('click', () => {
+            if (a > 1) {
+                a--
+                num.innerText = a
+            }
+
+        })
+
+        //---
+
+    </script>
+</body>
+
+</html>
+<noembed>

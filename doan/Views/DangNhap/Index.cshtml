@@ -1,0 +1,39 @@
+﻿
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="~/Content/DangNhap.css" rel="stylesheet" />
+</head>
+<body id="particles-js">
+    <div class="animated bounceInDown">
+        <div class="container">
+            <span class="error animated tada" id="msg"></span>
+            @using (Html.BeginForm("Index", "DangNhap", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+            <div name="form1" class="box" onsubmit="return checkStuff()">
+                <h4>Admin<span>Dashboard</span></h4>
+                <h5>Sign in to your account.</h5>
+                @Html.TextBox("Email", "", new { placeholder = "Email", autocomplete = "off" })
+                @Html.Password("Pass", "", new { placeholder = "Passsword", id = "pwd", autocomplete = "off"})
+                <a href="#" class="forgetpass">Forget Password?</a>
+                <input type="submit" value="Sign in" class="btn1">
+            </div>
+            <a href="#" type="submit" class="dnthave">Don’t have an account? Sign up</a>
+            }
+        </div>
+    </div>
+</body>
+<script src="~/Scripts/DangNhap.js"></script>
+</html>
+<noembed>

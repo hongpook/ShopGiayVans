@@ -1,0 +1,179 @@
+﻿@using doan.Models;
+@{
+    ViewBag.pageName = "Shoes | Tất Cả Sản Phẩm Tại VANS Việt Nam";
+    ViewBag.Title = "AllVans";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="top-bar">
+    <h1>@ViewBag.pageName</h1>
+    <ul>
+        <li>@Html.ActionLink("Trang chủ", "Index", "Home")</li>
+        <li>/</li>
+        <li>@ViewBag.Title</li>
+    </ul>
+</div>
+<div class="container p-bt">
+    <div class="nav container">
+        <div class="collection-section">
+            <table>
+                <tr>
+                    <td>
+                        <div class="dropdown col-lg-3">
+                            <button class="btn btn-default dropdown-toggle col-lg-12" type="button" data-toggle="dropdown">
+                                Danh Mục
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu col-lg-12">
+                                @{
+                                    int n = 0;
+                                    int i = 0;
+                                    foreach (loaiSP l in common.getLoaiSP())
+                                    {
+                                        i++;
+                                        <li><a href='@Url.Action("Index", "Shoes", new { IsSP = @i })'>@l.tenLoai</a></li>
+                                    }
+                                }
+
+                            </ul>
+                        </div>
+                        <div class="dropdown col-lg-3">
+                            <button class="btn btn-default dropdown-toggle col-lg-12" type="button" data-toggle="dropdown">
+                                Màu sắc
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu col-lg-12">
+                                <li><a href="#">HTML</a></li>
+                                <li><a href="#">CSS</a></li>
+                                <li><a href="#">JavaScript</a></li>
+                            </ul>
+                        </div>
+                        <div class="dropdown col-lg-3">
+                            <button class="btn btn-default dropdown-toggle col-lg-12" type="button" data-toggle="dropdown">
+                                Thương hiệu
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu col-lg-12">
+                                <li><a href="#">HTML</a></li>
+                                <li><a href="#">CSS</a></li>
+                                <li><a href="#">JavaScript</a></li>
+                            </ul>
+                        </div>
+                        <div class="dropdown col-lg-3">
+                            <button class="btn btn-default dropdown-toggle col-lg-12" type="button" data-toggle="dropdown">
+                                Sắp xếp theo
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu col-lg-12">
+                                <li><a href="#">HTML</a></li>
+                                <li><a href="#">CSS</a></li>
+                                <li><a href="#">JavaScript</a></li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="list-product row">
+            @{
+
+                foreach (sanPham item in common.getSanPhamByLoaiSP(1))
+                {
+                    <div class="product-right-items col-lg-3">
+                        <div class="product-img">
+                            <a href="@Url.Action("Index", "ProductDetails", new {maSP = item.maSP})"><img src="@item.hinhDD" alt=""></a>
+                            <div class="btn-option">
+                                <a href="@Url.Action("Index", "ProductDetails", new {maSP = item.maSP})">Tùy Chọn</a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-img-slide-body">
+                                <div class="product-slide">
+                                    <div class="product-img-slide ">
+                                        <img src="@item.hinhMot" alt="">
+                                        <img src="@item.hinhHai" alt="">
+                                        <img src="@item.hinhBa" alt="">
+                                    </div>
+                                </div>
+                                <div class="btn-prev"><i class="fa-solid fa-angle-left"></i></div>
+                                <div class="btn-next"><i class="fa-solid fa-angle-right"></i></div>
+                            </div>
+                            <h3><a href="@Url.Action("Index", "ProductDetails", new {maSP = item.maSP})">@item.tenSP</a></h3>
+                            <div class="product-price">
+                                <a href="#">@item.nhaSanXuat</a>
+                                <span>@item.giaBan<sup>₫</sup></span>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            }
+
+        </div>
+
+    </div>
+    <div class="page">
+        <ul>
+            <li>1</li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">...</a></li>
+            <li><a href="#">8</a></li>
+            <li><a href="#">></a></li>
+        </ul>
+    </div>
+</div>
+<div class="shoes container">
+    <div class="shoes-wrapper">
+        <div class="shoes-body">
+            <div class="heading">
+                <div class="dot"></div>
+                <h2 class="title-head" title="VANS BEST SELLER">
+                    <a href="#" class="text_gradient">VANS BEST SELLER</a>
+                </h2>
+                <div class="dot"></div>
+            </div>
+            <div class="shoes-content row">
+                @{
+                    int x = 0;
+                    foreach (sanPham s in common.getSanPhamByLoaiSP(3))
+                    {
+                        <div class="product-right-items col-lg-4 margin-l-r" id="@s.loaiSP">
+                            <div class="product-img">
+                                <a href="@Url.Action("Index", "ProductDetails", new {maSP = s.maSP})"><img src="@s.hinhDD" alt=""></a>
+                                <div class="btn-option">
+                                    <a href="@Url.Action("Index", "ProductDetails", new {maSP = s.maSP})">Tùy Chọn</a>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-img-slide-body">
+                                    <div class="product-slide">
+                                        <div class="product-img-slide ">
+                                            <img src="@s.hinhMot" alt="">
+                                            <img src="@s.hinhHai" alt="">
+                                            <img src="@s.hinhBa" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="btn-prev"><i class="fa-solid fa-angle-left"></i></div>
+                                    <div class="btn-next"><i class="fa-solid fa-angle-right"></i></div>
+                                </div>
+                                <h3><a href="@Url.Action("Index", "ProductDetails", new {maSP = s.maSP})">@s.tenSP</a></h3>
+                                <div class="product-price">
+                                    <a href="#">@s.nhaSanXuat</a>
+                                    <span>@s.giaBan<sup>₫</sup></span>
+                                </div>
+                            </div>
+                        </div>
+                        if (n++ >= 2)
+                        {
+                            break;
+                        }
+
+                    }
+
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,275 @@
+﻿
+
+@using doan.Models;
+@{
+    ViewBag.title = "Chi tiết sản phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    sanPham ds = (sanPham)ViewData["CTSP"];
+}
+<div class="top-bar">
+    <h2>VANS VIỆT NAM | @ds.tenSP</h2>
+    <ul>
+        <li>@Html.ActionLink("Trang chủ", "Index", "Home")</li>
+        <li>/</li>
+        <li>@ds.tenSP</li>
+    </ul>
+</div>
+<div class="container pb-t">
+    <!--Content - left-->
+    <div class="col-lg-6">
+        <div class="tab-content text-center">
+            <div id="home" class="tab-pane fade in active col-lg-12">
+                <img src="@ds.hinhDD" />
+            </div>
+            <div id="menu1" class="tab-pane fade">
+                <img src="@ds.hinhHai" />
+            </div>
+            <div id="menu2" class="tab-pane fade">
+                <img src="@ds.hinhBa" />
+            </div>
+        </div>
+
+        <ul class="nav nav-tabs">
+            <li class="active col-lg-3 col-xs-4"><a href="#home"><img src="@ds.hinhDD" /></a></li>
+            <li class="col-lg-3 col-xs-4"><a href="#menu1"><img src="@ds.hinhHai" /></a></li>
+            <li class="col-lg-3 col-xs-4"><a href="#menu2"><img src="@ds.hinhBa" /></a></li>
+        </ul>
+    </div>
+
+    <!--Content - right-->
+    <div class="prd-details col-lg-6">
+        <h3><b>@ds.tenSP</b></h3>
+        <p>Thương hiệu: <span>@ds.nhaSanXuat</span> / Mã sản phẩm: <span>@ds.maSP</span></p>
+        <hr />
+        <div class="price">
+            <p>@ds.giaBan <sup>₫</sup></p>
+        </div>
+        <div class="size">
+            SIZE
+        </div>
+        <div class="product-size">
+            <div class="o" value="42">
+                36
+            </div>
+            <div class="o" value="43">
+                37
+            </div>
+            <div class="o" value="44">
+                38
+            </div>
+            <div class="o active" value="39">
+                39
+            </div>
+            <div class="o " value="40">
+                40
+            </div>
+            <div class="o" value="41">
+                41
+            </div>
+            <div class="o" value="42">
+                42
+            </div>
+            <div class="o" value="43">
+                43
+            </div>
+            <div class="o" value="44">
+                44
+            </div>
+            <div class="o " value="39">
+                45
+            </div>
+            <div class="o " value="40">
+                46
+            </div>
+            <div class="o" value="41">
+                47
+            </div>
+
+        </div>
+        <div class="purchase row">
+            <div class="purchase-number col-lg-4">
+                @using (Html.BeginForm("ReduceSP", "Cart", FormMethod.Post))
+                {
+                    <input name="maSP" type="hidden" value="@ds.maSP" />
+                    <span class="minus">-</span>
+                }
+
+                <span class="num">1</span>
+                @using (Html.BeginForm("ReduceSP", "Cart", FormMethod.Post))
+                {
+                    <input name="maSP" type="hidden" value="@ds.maSP" />
+                    <span class="plus">+</span>
+                }
+            </div>
+            @using (Html.BeginForm("AddToCart", "Home" , FormMethod.Post))
+            { 
+                <input name="masp" type="hidden" value="@ds.maSP"/>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fa-solid fa-basket-shopping"></i> Chọn mua</button>
+            }
+        </div>
+        <p>
+            Tư vấn: <a href="#">0394421371</a><br>
+            <a href='@Url.Action("Index" , "SizeChart")' class="size-chart">SIZE CHART</a>
+        </p>
+
+    </div>
+</div>
+<hr />
+<div class="container product-wrapper">
+    <img src="~/Images/bg_product.jpg" alt="">
+    <div class="product-content-top">
+        <a class="tab-product active col-xs-6 col-lg-3">Thông tin sản phẩm</a>
+        <a class="tab-product col-xs-6 col-lg-3">Cách đo size VANS</a>
+    </div>
+    <div class="product-content-body">
+        <div class="tab-content-product active">
+            <div class="size-content">
+                <h2>Chi tiết sản phẩm</h2>
+                <p>@ds.noiDung</p>
+                <img src="@ds.hinhDD" />
+                <img src="@ds.hinhHai" />
+                <img src="@ds.hinhBa" />
+                <table border="2" cellpadding="1" cellspacing="1">
+                    <tbody>
+                        <tr>
+                            <td><b>Dòng sản phẩm:</b></td>
+                            <td>@ds.dongSanPham</td>
+                        </tr>
+                        <tr>
+                            <td><b>Mã SKU:</b></td>
+                            <td>@ds.maSP</td>
+                        </tr>
+                        <tr>
+                            <td><b>Chất liệu:</b></td>
+                            <td>@ds.chatLieu</td>
+                        </tr>
+                        <tr>
+                            <td><b>Màu sắc:</b></td>
+                            <td>@ds.mauSac</td>
+                        </tr>
+                        <tr>
+                            <td><b>Giới tính:</b></td>
+                            <td>@ds.phongCach</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+        <div class="tab-content-product">
+            <div class="container">
+                <div class="size-content">
+                    <h2>Size Giày VANS -Cách Đo Size Giày VANS Chi Tiết</h2>
+                    <b>Các bước kiểm tra size giày VANS:</b>
+                    <p><b class="text-danger">Bước 1: </b>Chuẩn bị một tờ giấy và đặt chân lên tờ giấy đó.</p>
+                    <p><b class="text-danger">Bước 2: </b>Vẽ gót chân và mũi chân lên tờ giấy.</p>
+                    <p>
+                        <b class="text-danger">Bước 3: </b>Kẻ 1 đường từ đầu gót chân đến đầu ngón dài nhất như hình
+                        (lưu ý: sử dụng ngón chân dài nhất vì một số người dài ngón cái, một số người dài ngón giữa v.v...)
+                    </p>
+                    <p><b class="text-danger">Bước 4: </b>Đo chiều dài đường thẳng vừa kẻ và so sánh với mục Cm của bảng size.</p>
+
+                    <img src="~/Images/bang-size-vans.jpg" />
+                    <p><i><b class="text-danger">Lưu ý:</b></i>Mỗi hãng thể thao có mỗi bảng size khác nhau, không áp dụng size của hãng khác vào hãng <i><b>VANS</b></i>.</p>
+                    <p>Những sản phẩm thuộc <i><b>VANSVN</b></i> phân phối sẽ có những yếu tố sau đây:</p>
+                    <img src="~/Images/describe-giay.jpg" />
+                    <p>Những sản phẩm không có phiếu bảo hành, tag độc quyền v.v... chúng tôi sẽ không chịu trách nhiệm cho sản phẩm đó</p>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<div class="shoes container">
+    <div class="shoes-wrapper">
+        <div class="shoes-body">
+            <div class="heading">
+                <div class="dot"></div>
+                <h2 class="title-head" title="VANS BEST SELLER">
+                    <a href="#" class="text_gradient">VANS BEST SELLER</a>
+                </h2>
+                <div class="dot"></div>
+            </div>
+            <div class="shoes-content row">
+                @{
+                    int n = 0;
+                    foreach (sanPham s in common.getSanPhamByLoaiSP(2))
+                    {
+                        <div class="product-right-items col-lg-4 margin-l-r" id="@s.loaiSP">
+                            <div class="product-img">
+                                <a href="@Url.Action("Index", "ProductDetails", new {maSP = s.maSP})"><img src="@s.hinhDD" alt=""></a>
+                                <div class="btn-option">
+                                    <a href="@Url.Action("Index", "ProductDetails", new {maSP = s.maSP})">Tùy Chọn</a>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-img-slide-body">
+                                    <div class="product-slide">
+                                        <div class="product-img-slide ">
+                                            <img src="@s.hinhMot" alt="">
+                                            <img src="@s.hinhHai" alt="">
+                                            <img src="@s.hinhBa" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="btn-prev"><i class="fa-solid fa-angle-left"></i></div>
+                                    <div class="btn-next"><i class="fa-solid fa-angle-right"></i></div>
+                                </div>
+                                <h3><a href="@Url.Action("Index", "ProductDetails", new {maSP = s.maSP})">@s.tenSP</a></h3>
+                                <div class="product-price">
+                                    <a href="#">@s.nhaSanXuat</a>
+                                    <span>@s.giaBan<sup>₫</sup></span>
+                                </div>
+                            </div>
+                        </div>
+                        if (n++ >= 2)
+                        {
+                            break;
+                        }
+                    }
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade " id="myModal" role="dialog">
+    <div class="modal-dialog ">
+
+        <!-- Modal content-->
+        <div class="modal-content ">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <div class="modal-header">
+                <div class="modal-top">
+                    <p class="modal-title col-lg-6"><i class="fa-solid fa-check"></i> Bạn vừa thêm sản phẩm này vào giỏ hàng</p>
+                    <a href="#" class="modal-title col-lg-6"><i class="fa-solid fa-basket-shopping"></i> giỏ hàng của bạn đang có 1 sản phẩm</a>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="modal-body">
+                    <div class="col-lg-6">
+                        <img src="@ds.hinhDD" alt="">
+                        <p>@ds.tenSP</p>
+                        <span>@ds.giaBan ₫</span>
+                    </div>
+                    <div class="col-lg-6">
+                        <p>Tổng tiền</p>
+                        <p>@ds.giaBan đ</p>
+                        <button type="button" class="btn btn-danger " onclick="window.location.href = '@Url.Action("Index" , "Cart")'"><i class="fa-solid fa-basket-shopping"></i> Tới giỏ hàng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+

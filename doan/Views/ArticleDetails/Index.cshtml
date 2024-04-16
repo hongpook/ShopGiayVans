@@ -1,0 +1,73 @@
+﻿@using doan.Models;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    baiViet bv = (baiViet)ViewData["CTBV"];
+}
+<style>
+    .comment{
+    }
+    .comment ul {
+        display: flex;
+        align-items: center;    
+    }
+    .comment ul li{
+        padding: 2px 4px;
+        border: 1px solid #ccc;
+        border-radius: 50%;
+        margin-left: 7px;
+    }
+    .comment ul li:hover{
+        border: 1px solid #ff0000;
+        color : #ff0000
+    }
+    .comment ul li:nth-child(2){
+        padding:2px 8px;
+    }
+    .comment ul li:nth-child(3){
+        padding:2px 6px;
+    }
+</style>
+<div class="top-bar">
+    <h2>VANS VIỆT NAM | @bv.tenBV</h2>
+    <ul>
+        <li>@Html.ActionLink("Trang chủ", "Index", "Home")</li>
+        <li>/</li>
+        <li>@bv.tenBV</li>
+    </ul>
+</div>
+<div class="container pb-t">
+    
+            <div class="container">
+                <div class="size-content">
+                    @Html.Raw(bv.noiDungBV)
+
+                    <div class="comment col-lg-12">
+                        <ul class="row">
+                            <h4>Chia sẻ: </h4>
+                            <li><i class="fa-brands fa-facebook-f"></i></li>
+                            <li><i class="fa-brands fa-twitter"></i></li>
+                            <li><i class="fa-brands fa-google-plus-g"></i></li>
+                        </ul>
+                        <h3>Viết bình luận của bạn:</h3>
+                        @using (Html.BeginForm("Index", "ArticleDetails", FormMethod.Post))
+                        {
+                            <div class="form-group">
+                                @Html.TextBox("hoten", "", new { @class = "form-control ", placeholder = "Họ và tên", Type = "text" })
+                                @Html.TextBox("email", "", new { @class = "form-control ", placeholder = "Email", Type = "email" })
+                                @Html.TextArea("cmt", "", new { @class = "form-control ", placeholder = "Viết bình luận của bạn", Type = "textarea" })
+                                
+                            </div>
+                            <button class="btn btn-danger">Đăng bình luận</button>
+                        }
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+</div>
+
+

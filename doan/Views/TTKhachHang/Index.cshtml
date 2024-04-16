@@ -1,0 +1,99 @@
+﻿@using doan.Models;
+@{
+    ViewBag.Title = "Thông tin khách hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var hoTen = HttpContext.Current.Session["user"].ToString();
+    var email = HttpContext.Current.Session["Email"].ToString();
+}
+<style>
+    .tabKh{
+            color: #272727;
+    }
+    .tabKh:hover{
+        color: red;
+        cursor: pointer;
+    }
+    .tabKh.active{
+        color: red;
+            
+    }
+    .items-Kh{
+        display: none;
+    }
+    .items-Kh.active{
+        display: block;
+    }
+</style>
+<div class="top-bar">
+    <h2>Thông tin khách hàng</h2>
+    <ul>
+        <li><a href="index.html">Trang chủ</a></li>
+        <li>/</li>
+        <li>Thông tin khách hàng</li>
+    </ul>
+</div>
+<div class="container p-bt">
+    <div class="col-lg-3">
+        <ul>
+            <h4>THÔNG TIN KHÁCH HÀNG</h4>
+            <li><a class="tabKh active">Thông tin tài khoản</a></li>
+            <li><a class="tabKh ">Đơn hàng của bạn</a></li>
+        </ul>
+    </div>
+    <div class="col-lg-9">
+        <div class="items-Kh active">
+            <h4>THÔNG TIN TÀI KHOẢN</h4>
+            <div>
+                <p><b>Họ và tên: </b>@hoTen</p>
+                <p><b>Email: </b>@email</p>
+            </div>
+        </div>
+        <div class="items-Kh ">
+            <h4>ĐƠN HÀNG CỦA BẠN</h4>
+            <table class="table table-cart table-order" id="my-orders-table">
+                <thead class="thead-default">
+                    <tr>
+                        <th>Đơn hàng</th>
+                        <th>Ngày</th>
+                        <th>Địa chỉ</th>
+                        <th>Giá trị đơn hàng</th>
+                        <th>TT thanh toán</th>
+                        <th>TT vận chuyển</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td colspan="6">
+                            <p>Không có đơn hàng nào.</p>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    const $s = document.querySelector.bind(document)
+    const $es = document.querySelectorAll.bind(document)
+    // size
+    const items_Kh = $es('.items-Kh')
+    const tabKh = $es('.tabKh')
+
+
+    //size-chart
+    tabKh.forEach((item, index) => {
+        var tabContentProduct = items_Kh[index]
+        item.onclick = function () {
+            $s('.tabKh.active').classList.remove('active')
+            $s('.items-Kh.active').classList.remove('active')
+            item.classList.add('active')
+            tabContentProduct.classList.add('active')
+        }
+    });
+</script>

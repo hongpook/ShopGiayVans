@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ShopGiayVansModelStoreContainer" CdmEntityContainer="ShopGiayVansEntities2">
+    <EntitySetMapping Name="baiViet">
+      <EntityTypeMapping TypeName="ShopGiayVansModel.baiViet">
+        <MappingFragment StoreEntitySet="baiViet">
+          <ScalarProperty Name="maBV" ColumnName="maBV" />
+          <ScalarProperty Name="tenBV" ColumnName="tenBV" />
+          <ScalarProperty Name="hinhDD" ColumnName="hinhDD" />
+          <ScalarProperty Name="ndTomTat" ColumnName="ndTomTat" />
+          <ScalarProperty Name="ngayDang" ColumnName="ngayDang" />
+          <ScalarProperty Name="loaiTin" ColumnName="loaiTin" />
+          <ScalarProperty Name="noiDungBV" ColumnName="noiDungBV" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="daDuyet" ColumnName="daDuyet" />
+          <ScalarProperty Name="soLanDoc" ColumnName="soLanDoc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CtDonHang">
+      <EntityTypeMapping TypeName="ShopGiayVansModel.CtDonHang">
+        <MappingFragment StoreEntitySet="CtDonHang">
+          <ScalarProperty Name="maKH" ColumnName="maKH" />
+          <ScalarProperty Name="maDH" ColumnName="maDH" />
+          <ScalarProperty Name="maSP" ColumnName="maSP" />
+          <ScalarProperty Name="soLuong" ColumnName="soLuong" />
+          <ScalarProperty Name="giaBan" ColumnName="giaBan" />
+          <ScalarProperty Name="giamGia" ColumnName="giamGia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="donHang">
+      <EntityTypeMapping TypeName="ShopGiayVansModel.donHang">
+        <MappingFragment StoreEntitySet="donHang">
+          <ScalarProperty Name="maDH" ColumnName="maDH" />
+          <ScalarProperty Name="maKH" ColumnName="maKH" />
+          <ScalarProperty Name="tenKH" ColumnName="tenKH" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="ngayDat" ColumnName="ngayDat" />
+          <ScalarProperty Name="daKichHoat" ColumnName="daKichHoat" />
+          <ScalarProperty Name="ngayGH" ColumnName="ngayGH" />
+          <ScalarProperty Name="diaChiGH" ColumnName="diaChiGH" />
+          <ScalarProperty Name="tinhTrangGH" ColumnName="tinhTrangGH" />
+          <ScalarProperty Name="ghiChu" ColumnName="ghiChu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="khachHang">
+      <EntityTypeMapping TypeName="ShopGiayVansModel.khachHang">
+        <MappingFragment StoreEntitySet="khachHang">
+          <ScalarProperty Name="matKhau" ColumnName="matKhau" />
+          <ScalarProperty Name="maKH" ColumnName="maKH" />
+          <ScalarProperty Name="hoDem" ColumnName="hoDem" />
+          <ScalarProperty Name="tenKH" ColumnName="tenKH" />
+          <ScalarProperty Name="soDT" ColumnName="soDT" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="diaChi" ColumnName="diaChi" />
+          <ScalarProperty Name="ngaySinh" ColumnName="ngaySinh" />
+          <ScalarProperty Name="gioiTinh" ColumnName="gioiTinh" />
+          <ScalarProperty Name="soLanMua" ColumnName="soLanMua" />
+          <ScalarProperty Name="ghiChu" ColumnName="ghiChu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="loaiSP">
+      <EntityTypeMapping TypeName="ShopGiayVansModel.loaiSP">
+        <MappingFragment StoreEntitySet="loaiSP">
+          <ScalarProperty Name="maLoai" ColumnName="maLoai" />
+          <ScalarProperty Name="tenLoai" ColumnName="tenLoai" />
+          <ScalarProperty Name="nhomLoai" ColumnName="nhomLoai" />
+          <ScalarProperty Name="ghiChu" ColumnName="ghiChu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="loaiTin">
+      <EntityTypeMapping TypeName="ShopGiayVansModel.loaiTin">
+        <MappingFragment StoreEntitySet="loaiTin">
+          <ScalarProperty Name="maTin" ColumnName="maTin" />
+          <ScalarProperty Name="loaiTin1" ColumnName="loaiTin" />
+          <ScalarProperty Name="ghiChu" ColumnName="ghiChu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="quanTri">
+      <EntityTypeMapping TypeName="ShopGiayVansModel.quanTri">
+        <MappingFragment StoreEntitySet="quanTri">
+          <ScalarProperty Name="hinhTV" ColumnName="hinhTV" />
+          <ScalarProperty Name="hoDem" ColumnName="hoDem" />
+          <ScalarProperty Name="tenTV" ColumnName="tenTV" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="matKhau" ColumnName="matKhau" />
+          <ScalarProperty Name="ghiChu" ColumnName="ghiChu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sanPham">
+      <EntityTypeMapping TypeName="ShopGiayVansModel.sanPham">
+        <MappingFragment StoreEntitySet="sanPham">
+          <ScalarProperty Name="maSP" ColumnName="maSP" />
+          <ScalarProperty Name="tenSP" ColumnName="tenSP" />
+          <ScalarProperty Name="hinhDD" ColumnName="hinhDD" />
+          <ScalarProperty Name="ndTomTat" ColumnName="ndTomTat" />
+          <ScalarProperty Name="ngayDang" ColumnName="ngayDang" />
+          <ScalarProperty Name="maLoai" ColumnName="maLoai" />
+          <ScalarProperty Name="noiDung" ColumnName="noiDung" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="dvt" ColumnName="dvt" />
+          <ScalarProperty Name="daDuyet" ColumnName="daDuyet" />
+          <ScalarProperty Name="giaBan" ColumnName="giaBan" />
+          <ScalarProperty Name="giamGia" ColumnName="giamGia" />
+          <ScalarProperty Name="nhaSanXuat" ColumnName="nhaSanXuat" />
+          <ScalarProperty Name="mauSac" ColumnName="mauSac" />
+          <ScalarProperty Name="dongSanPham" ColumnName="dongSanPham" />
+          <ScalarProperty Name="chatLieu" ColumnName="chatLieu" />
+          <ScalarProperty Name="phongCach" ColumnName="phongCach" />
+          <ScalarProperty Name="hinhMot" ColumnName="hinhMot" />
+          <ScalarProperty Name="hinhHai" ColumnName="hinhHai" />
+          <ScalarProperty Name="hinhBa" ColumnName="hinhBa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="ShopGiayVansModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

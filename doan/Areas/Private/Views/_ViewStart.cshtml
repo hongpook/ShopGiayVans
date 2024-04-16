@@ -1,0 +1,10 @@
+﻿@using doan.Models;
+@{ 
+    quanTri x = Session["TTDangNhap"] as quanTri;
+    if (x == null)
+    {
+        Response.Redirect("~/DangNhap");
+    }
+
+    Layout = "~/Areas/Private/Views/Shared/_Layout.cshtml";
+}

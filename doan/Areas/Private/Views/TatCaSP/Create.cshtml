@@ -1,0 +1,170 @@
+﻿@model doan.Models.sanPham
+@using doan.Models
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Private/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Thêm sản phẩm
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href='@Url.Action("Index", "TrangChu")'><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Danh mục sản phẩm</a></li>
+            <li class="active">Thêm sản phẩm</li>
+        </ol>
+    </section>
+
+    @using (Html.BeginForm())
+    {
+        <section class="content">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="row">
+                    <div class="col-lg-8 col-xs-4">
+                        <div class="box box-danger">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Thông tin sản phẩm</h3>
+
+                                <div class="box-tools pull-right">
+                                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                                </div>
+                            </div>
+                            <div class="box-body ">
+                                <div class="form-group">
+                                    <label>Tên sản phẩm</label>
+                                    <div class="">
+                                        @Html.TextBoxFor(model => model.tenSP, new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label>Nội dung tóm tắt</label>
+                                    <div class="">
+                                        @Html.TextAreaFor(model => model.ndTomTat, new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-lg-4">
+                                    <label>Ngày đăng</label>
+                                    <div class="">
+                                        @Html.TextBoxFor(model => model.ngayDang, new { @class = "form-control", disabled = "disabled" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group  col-lg-4">
+                                    <label>Mã loại</label>
+                                    <div class="">
+                                        @Html.TextBoxFor(x => x.maLoai, new { @class = "form-control", type = "number" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-lg-4">
+                                    <label>Đơn vị tính</label>
+                                    <div class="">
+                                        @Html.DropDownListFor(x => x.dvt, new SelectList(Enum.GetValues(typeof(dvt))), "Đơn vị tính", new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group col-lg-6">
+                                    <label>Email</label>
+                                    <div class="">
+                                        @Html.TextBoxFor(x => x.email, new { @class = "form-control", type = "email", disabled = "disabled" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-lg-6">
+                                    <label>Dòng sản phẩm</label>
+                                    <div class="">
+                                        @Html.TextBoxFor(model => model.dongSanPham, new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group col-lg-4">
+                                    <label>Giá bán</label>
+                                    <div class="">
+                                        @Html.TextBoxFor(model => model.giaBan, new { @class = "form-control", type = "number" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-lg-4">
+                                    <label>Giảm giá</label>
+                                    <div class="">
+                                        @Html.TextBoxFor(model => model.giamGia, new { @class = "form-control", type = "number" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-lg-4">
+                                    <label>Nhà sản xuất</label>
+                                    <div class="">
+                                        @Html.TextBoxFor(model => model.nhaSanXuat, new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-lg-4">
+                                    <label>Màu sắc</label>
+                                    <div class="">
+                                        @Html.TextBoxFor(model => model.mauSac, new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group col-lg-4">
+                                    <label>Chất liệu</label>
+                                    <div class="">
+                                        @Html.TextBoxFor(model => model.chatLieu, new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-lg-4">
+                                    <label>Phong cách</label>
+                                    <div class="">
+                                        @Html.TextBoxFor(model => model.phongCach, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <label>Nội dung sản phẩm</label>
+                                    <div class="">
+                                        @Html.TextAreaFor(model => model.noiDung, new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="submit" value="Create" class="btn btn-primary" />
+                                        <a href='@Url.Action("Index", "TatCaSP",  new {IsActive = 1 })' class="btn btn-danger">Hủy</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-xs-4">
+                        <div class="box box-danger">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Hình đại diện</h3>
+                                <div class="box-tools pull-right">
+                                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                                </div>
+                            </div>
+                            <div class="box-body">
+                                <img id="myImg" src="@ViewBag.hinhDD" alt="your image">
+                                <input type='file' name="hinhDD" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+    }
+</div>
